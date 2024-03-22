@@ -1,0 +1,44 @@
+{
+
+"version": 1,
+"message": "What's new \nAdded new server",
+
+"files": [
+
+{
+         //server-1
+         "config": "dN0F61NysNmsQ6XPCznDopDOf2+OGUnrUNBlNioHtGFCXiuTw4Ve59CaIA/8ezYm5Sans35dyy45NjAiY5pW/q5tqF0jE0ZfP7RpxGQUYoQt/+gpzKSARxwO0CTYlmeyDplDsXgdxWkjN5DeRX2v5WlDcGKJeWbUITEMZh5JeOBIO9syvjaTvrPKtESDL//PR/dDpC1kWQucCrDUR6kp5Y+Hjh/Q4+poIkNFgGEgzmL13HT++DpP8iH5qW0e2Vi5OPOXpDEa49dwPjmm91C783gW+jj+oOiLe1spDl03tV8i4R/pDv0y9/7usDvtnx/dgMBgAwFiNGzPVTL+qYmbzKqX8LXL3vllwDq440ayT4FxKHEZkAQ2gmi4eAXRzaoXQbJyrc3QjOIh9bOfkTtG7jOY0tOEpRb23Iue+cBtUmH2HKVkN+7FRw9i7mxnD6XvFfahnQ=="
+     
+},
+{
+        //server-2
+      "config": "dN0F61NysNmsQ6XPCznDopDOf2+OGUnrUNBlNioHtGFCXiuTw4Ve59CaIA/8ezYm5Sans35dyy45NjAiY5pW/q5tqF0jE0ZfP7RpxGQUYoQt/+gpzKSARxwO0CTYlmeyDplDsXgdxWkjN5DeRX2v5WlDcGKJeWbUITEMZh5JeOBIO9syvjaTvrPKtESDL//PR/dDpC1kWQucCrDUR6kp5Y+Hjh/Q4+poIkNFgGEgzmL13HT++DpP8iH5qW0e2Vi5OPOXpDEa49dwPjmm91C783gW+jj+oOiLe1spDl03tV8i4R/pDv0y9/7usDvtnx/dgMBgAwFiNGzPVTL+qYmbzKqX8LXL3vllwDq440ayT4FxKHEZkAQ2gmi4eAXRzaoXQbJyrc3QjOIh9bOfkTtG7jOY0tOEpRb23Iue+cBtUmH2HKVkN+7FRw9i7mxnD6XvFfahnQ=="
+      
+      },
+
+{
+        //server-3
+      "config": "dN0F61NysNmsQ6XPCznDopDOf2+OGUnrUNBlNioHtGFCXiuTw4Ve59CaIA/8ezYm5Sans35dyy45NjAiY5pW/q5tqF0jE0ZfP7RpxGQUYoQt/+gpzKSARxwO0CTYlmeyDplDsXgdxWkjN5DeRX2v5WlDcGKJeWbUITEMZh5JeOBIO9syvjaTvrPKtESDL//PR/dDpC1kWQucCrDUR6kp5Y+Hjh/Q4+poIkNFgGEgzmL13HT++DpP8iH5qW0e2Vi5OPOXpDEa49dwPjmm91C783gW+jj+oOiLe1spDl03tV8i4R/pDv0y9/7usDvtnx/dgMBgAwFiNGzPVTL+qYmbzKqX8LXL3vllwDq440ayT4FxKHEZkAQ2gmi4eAXRzaoXQbJyrc3QjOIh9bOfkTtG7jOY0tOEpRb23Iue+cBtUmH2HKVkN+7FRw9i7mxnD6XvFfahnQ=="
+      
+      },
+      
+      {
+        //server-4
+      "config": "dN0F61NysNmsQ6XPCznDopDOf2+OGUnrUNBlNioHtGFCXiuTw4Ve59CaIA/8ezYm5Sans35dyy45NjAiY5pW/q5tqF0jE0ZfP7RpxGQUYoQt/+gpzKSARxwO0CTYlmeyDplDsXgdxWkjN5DeRX2v5WlDcGKJeWbUITEMZh5JeOBIO9syvjaTvrPKtESDL//PR/dDpC1kWQucCrDUR6kp5Y+Hjh/Q4+poIkNFgGEgzmL13HT++DpP8iH5qW0e2Vi5OPOXpDEa49dwPjmm91C783gW+jj+oOiLe1spDl03tV8i4R/pDv0y9/7usDvtnx/dgMBgAwFiNGzPVTL+qYmbzKqX8LXL3vllwDq440ayT4FxKHEZkAQ2gmi4eAXRzaoXQbJyrc3QjOIh9bOfkTtG7jOY0tOEpRb23Iue+cBtUmH2HKVkN+7FRw9i7mxnD6XvFfahnQ=="
+      
+      }
+      
+
+   ],
+
+
+
+"dtac": "Dtac ဆင်းမ်အတွက် အသုံးပြုနည်း \nDtac ဆင်းမ်ဆိုရင်...",
+
+"true": "True ဆင်းမ်အတွက် အသုံးပြုနည်း \nTrue ဆင်းမ်ဆိုရင်...",
+
+"ais": "Ais  ဆင်းမ်အတွက် အသုံးပြုနည်း \nAis ဆင်းမ်ဆိုရင်..."
+
+
+
+}
