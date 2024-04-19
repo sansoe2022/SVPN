@@ -1,4 +1,5 @@
-"Servers": [
+{
+  "Servers": [
 {
 "config": "vmess://eyJhZGQiOiJzLmR0YWMuY28udGgiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6InRoLXZpcDQuc2tzdnBuLnNob3AiLCJpZCI6ImViNGQwNzEzLThmNTUtNDBmZS1iNTdmLTAzMjRhNjc2OGMxZCIsIm5ldCI6IndzIiwicGF0aCI6Ii92bWVzcyIsInBvcnQiOiI4MCIsInBzIjoidGgtdmlwNCIsInNjeSI6ImF1dG8iLCJzbmkiOiIiLCJ0bHMiOiIiLCJ0eXBlIjoiIiwidiI6IjIifQ=="
 },
@@ -11,3 +12,4 @@
 
 
 ]
+}
