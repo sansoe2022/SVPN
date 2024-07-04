@@ -149,7 +149,7 @@
       "Name": "DtacNoPro-FREE-01",
       "FLAG": "th",
       "ServerIP": "testdtac.sansoe.xyz",
-      "ServerPort": "22",
+      "ServerPort": "143",
       "SSLPort": "443",
       "ProxyIP": "",
       "ProxyPort": "",
