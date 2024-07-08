@@ -16,11 +16,11 @@
 "MyMessage": "ဒီစာက ဆာဗာကနေ လာတဲ့ Noti ဖြစ်ပါတယ် \nThank you! \nversion 6",
 
 //app update dialog
-"message":"What's new ?\n• Updated UI \n• Added Hotshare function \n• Fixed bug and more\n \nThanks for your understand❤️",
+"messageWarning":"What's new ?\n• Updated UI \n• Added Hotshare function \n• Fixed bug and more\n \nThanks for your understand❤️",
 "title":"Can't use continue current version, you need to upgrade V1.2.3 ",
 //remove link -> https://
 "link":"play.google.com/store/apps/details?id=com.svpnmm.mmdev",
 "website":"svpn-app.website",
-"version": 1
+"versionCode": 1
   
 }
