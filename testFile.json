@@ -6,14 +6,14 @@
 "Inter": "",
   
 //server update dialog
-"version": 44,
-"message": "Config version: 44 \nWhat's new \nAdded TH VIP 4 🇹🇭",
-"progress": 50,
+"version": 45,
+"message": "Config version: 45 \nWhat's new \nAdded TH VIP 4 🇹🇭",
+"progress": 3,
 "fileUrl": "https://github.com/sansoe2022/SVPN/raw/main/json.txt",
   
 //noti message
-"SendMessage": 12,
-"MyMessage": "ဒီစာက ဆာဗာကနေ လာတဲ့ Noti ဖြစ်ပါတယ် \nThank you! \nversion 12",
+"SendMessage": 13,
+"MyMessage": "ဒီစာက ဆာဗာကနေ လာတဲ့ Noti ဖြစ်ပါတယ် \nThank you! \nversion 13",
 
 //app update dialog
 "messageWarning":"What's new ?\n• Updated UI \n• Added Hotshare function \n• Fixed bug and more\n \nThanks for your understand❤️",
