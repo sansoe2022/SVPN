@@ -1,9 +1,9 @@
 {
   
 //setup admob units
-"Banner": "",
-"Reward": "",
-"Inter": "",
+"Banner": "ca-app-pub-3940256099942544/9214589741",
+"Reward": "ca-app-pub-3940256099942544/5224354917",
+"Inter": "ca-app-pub-3940256099942544/1033173712",
   
 //server update dialog
 "version": 47,
