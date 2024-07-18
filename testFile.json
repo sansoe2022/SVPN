@@ -12,8 +12,8 @@
 "fileUrl": "https://github.com/sansoe2022/SVPN/raw/main/json.txt",
   
 //noti message
-"SendMessage": 1,
-"MessageTitle": "From server",
+"SendMessage": 2,
+"MessageTitle": "From server admin",
 "MyMessage": "ဒီစာက ဆာဗာကနေ လာတဲ့ Noti ဖြစ်ပါတယ် \nThank you! \nversion 13",
 
 //app update dialog
