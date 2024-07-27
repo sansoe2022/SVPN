@@ -16,10 +16,8 @@
 //app update dialog
 "messageWarning":"What's new ?\n• Updated UI \n• Added Hotshare function \n• Fixed bug and more\n \nThanks for your understand❤️",
 "title":"Can't use continue current version, you need to upgrade V1.2.3 ",
-  
-//remove link -> https://
-"link":"play.google.com/store/apps/details?id=com.svpnmm.mmdev",
-"website":"svpn-app.website",
-"versionCode": 1
+"link":"https://play.google.com/store/apps/details?id=com.svpnmm.mmdev",
+"website":"https://play.google.com/store/apps/details?id=com.svpnmm.mmdev",
+"versionCode": 2
   
 }
