@@ -1,4 +1,19 @@
+"Servers": [
 {
-"name": "",
+"name": "server 1",
+"server": ""
+},
+
+{
+"name": "server2",
+"server": ""
+},
+
+{
+"name": "server3",
 "server": ""
 }
+
+
+
+]
