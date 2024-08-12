@@ -8,9 +8,9 @@
 "Inter": "ca-app-pub-3940256099942544/1033173712",
   
 //server update dialog
-"version": 47,
-"message": "Config version: 47 \nWhat's new \nAdded TH VIP 4 🇹🇭",
-"progress": 3,
+"version": 48,
+"message": "Config version: 48 \nWhat's new \nAdded TH VIP 4 🇹🇭",
+"progress": 4,
 "fileUrl": "https://github.com/sansoe2022/SVPN/raw/main/json.txt",
 
 //app update dialog
