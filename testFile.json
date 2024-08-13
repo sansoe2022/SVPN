@@ -2,14 +2,9 @@
 // add time 5 hours
 "RewardAmount": 5,
   
-//setup admob units
-"Banner": "ca-app-pub-3940256099942544/9214589741",
-"Reward": "ca-app-pub-3940256099942544/5224354917",
-"Inter": "ca-app-pub-3940256099942544/1033173712",
-  
 //server update dialog
-"version": 48,
-"message": "Config version: 48 \nWhat's new \nAdded TH VIP 4 🇹🇭",
+"version": 1,
+"message": "Config version: 1 \nWhat's new \nAdded TH VIP 4 🇹🇭",
 "progress": 4,
 "fileUrl": "https://github.com/sansoe2022/SVPN/raw/main/json.txt",
 
