@@ -1,12 +1,12 @@
 {
-// add time 5 hours
-"RewardAmount": 5,
   
 //server update dialog
 "version": 1,
 "message": "Config version: 1 \nWhat's new \nAdded TH VIP 4 🇹🇭",
-"progress": 4,
 "fileUrl": "https://github.com/sansoe2022/SVPN/raw/main/json.txt",
+
+// add time 5 hours
+"RewardAmount": 5,
 
 //app update dialog
 "messageWarning":"What's new ?\n• Updated UI \n• Added Hotshare function \n• Fixed bug and more\n \nThanks for your understand❤️",
