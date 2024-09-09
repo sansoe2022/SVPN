@@ -18,13 +18,20 @@
 
          "name": "TH-FREE-1",
 
-         "url": "http://45.91.133.237:81/server/online_app.json"
+         "url": "http://45.91.133.237:82/server/online_app.json"
 
       },
 
 {
 
          "name": "TH-FREE-2",
+
+         "url": "http://45.91.134.81:82/server/online_app.json"
+
+      },
+  {
+
+         "name": "TH-FREE-3",
 
          "url": "http://45.91.134.81:81/server/online_app.json"
 
