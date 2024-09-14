@@ -1,7 +1,7 @@
 {
   
-"version": 56,
-"message": "Config version: 56 \nWhat's new \nFixed AIS play server",
+"version": 57,
+"message": "Config version: 57 \nWhat's new \nAdded FREE new server❤️",
 "fileUrl": "https://raw.githubusercontent.com/sansoe2022/SVPN/main/svpnAll_Config.txt",
 
 "RewardAmount": 5,
@@ -33,7 +33,7 @@
 
          "name": "TH-FREE-03",
 
-         "url": "http://45.91.134.81:81/server/online_app.json"
+         "url": "http://43.228.85.165:82/server/online_app.json"
 
       }
 
