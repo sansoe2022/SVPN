@@ -93,13 +93,14 @@
  "SSLNetworks": [
   {
    "FLAG": "true",
-   "proto_spin": 3,
+   "proto_spin": "3",
+   "serverSPType": "1",
    "server_type": "http",
    "Name": "True (SSL)",
    "SSLSNI": "yiwoKMAe38m9A0fZNsG00yGYZwuY\/LfUDQWyj4w1Spjr\/ekGn87m+ufJwfdtCRu3sMXeNdvuh6spj\/yaVBv9Ig==",
    "SSLPayload": "",
    "Info": "need FB Gaming pro",
-   "UseDefProxy": true,
+   "UseDefProxy": "true",
    "SquidProxy": "LlbOSpdcXOPqBJj83fykAxJBgj2GyOBBlXMrMVjsxuw=",
    "SquidPort": "8080",
    "SSLPort": ""
