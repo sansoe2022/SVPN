@@ -1,7 +1,7 @@
 {
  "FileName": "shan_vpn",
- "Version": "1.8",
- "ReleaseNotes": "New Update available 1.8",
+ "Version": "1.9",
+ "ReleaseNotes": "New Update available 1.9",
  "contactSupport": "t.me.sansoe2021",
  "Servers": [
   {
@@ -48,7 +48,7 @@
    "FLAG": "true",
    "proto_spin": "0",
    "serverSPType": "0",
-   "server_type": "http",
+   "server_type": "ws",
    "Name": "True (OVPN)",
    "NetworkPayload": "n1vtWrbFiiwAWMOPfJr9FQ\/OSz4ArLttzH9qpt2A3yUxCTA1xGaCDliqL+zbAOrsuNFpsq38LGfHO6ZTLIT5FlIdW\/ABvYu3IjlsKrmGu0K7E53UOWmF3btZGG2cB3DzPEMb\/Y1zrMy2iuqtlprgLaqZPll0oKe550XpA95\/Fl0wDA+mBRq9R9Y60553TLRhkQPYIrVdM32BULUD4ByZbAlbtWdPwLNsicHD2+f7E6d1zzQXZIpSQjDRTgEm1WghUhjwW\/OplNSQIFj5ncrbD3VclSJt6rngZWzqYn7xREbLTG\/ILsEc87ka0EadHf0xOVoP0E\/56fOlgrn1b63yyU0GM8i2b42ACK1lSlhFKV9xDMMhngyg3o7E9h+TQlof6X88MzEmSFw7LZcCfuajD\/XsCq990w8j7EpXDUW4undLoNIrheWqLGR+q+4tMVbqLwWUh5ztfmG\/JbalzcTilwph7eKHaI8sR5QLpXj2nPuoS7wq8Lro98pOEDrRgq8Pgxqy7hhx0CnDOJhlaMz3DEB1OqC3IjFQTE7Whoy61W+Fuk8ryvD3CEMNmQuj75uXthRReP8KIWmtr+vCgsAYZEm3Ecnq3W+1TXY6OGO9CZSFq\/6uMp07r6yxKf3D3HfYDZvMnpcJk9PJD3ga4Mex5nQKB9nOeQ8udwpVcw==",
    "Info": "no need pro",
