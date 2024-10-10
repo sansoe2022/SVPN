@@ -1,7 +1,7 @@
 {
  "FileName": "shan_vpn",
- "Version": "2.3",
- "ReleaseNotes": "New Update available 2.3",
+ "Version": "2.4",
+ "ReleaseNotes": "New Update available 2.4",
  "contactSupport": "t.me.sansoe2021",
  "Servers": [
   {
@@ -14,7 +14,7 @@
    "V2ray": "",
    "ServerCloudFront": "6gNJSdrPmLhDfjyoQQ8beRnvigyXQqGlAVXWmsMHnC6tIkqvJUHdNkpBSB4z7AiAOsEYjJAx2Tx2m\/6kEv4uJRMeXTS7m2R8d9vZyVy8DANUvvkdh5A4H223NU8YA+tqj6nOL7GbIQ9J0EpbvegdmVp9K9I=",
    "ServerHTTP": "6gNJSdrPmLhDfjyoQQ8beRnvigyXQqGlAVXWmsMHnC6tIkqvJUHdNkpBSB4z7AiAOsEYjJAx2Tx2m\/6kEv4uJRMeXTS7m2R8d9vZyVy8DANUvvkdh5A4H223NU8YA+tqj6nOL7GbIQ9J0EpbvegdmVp9K9I=",
-   "TcpPort": "22",
+   "TcpPort": "1194",
    "SSLPort": "443",
    "ProxyPort": "8880",
    "AutoLogIn": "true",
