@@ -1,44 +1,13 @@
 {
   
-"version": 59,
-"message": "Config version: 59 \nWhat's new \nAdded FREE new server❤️",
+"version": 60,
+"message": "Config version: 60 \nWhat's new \nAdded FREE new server❤️",
 "fileUrl": "https://raw.githubusercontent.com/sansoe2022/SVPN/refs/heads/main/testAPI.json",
-
-"RewardAmount": 5,
 
 "messageWarning":"What's new ?\n• Updated UI \n• Added Hotshare function \n• Fixed bug and more\n \nThanks for your understand❤️",
 "title":"Can't use continue current version, you need to upgrade V1.3.0 ",
 "link":"https://play.google.com/store/apps/details?id=com.svpnmm.mmdev",
 "website":"https://play.google.com/store/apps/details?id=com.svpnmm.mmdev",
-"versionCode": 30,
-
-"files": [
-
-{
-
-         "name": "TH-FREE-01",
-
-         "url": "http://45.91.133.237:82/server/online_app.json"
-
-      },
-
-{
-
-         "name": "TH-FREE-02",
-
-         "url": "http://45.91.134.81:82/server/online_app.json"
-
-      },
-  {
-
-         "name": "TH-FREE-03",
-
-         "url": "http://43.228.85.165:82/server/online_app.json"
-
-      }
-
-
-
-   ]
+"versionCode": 30
   
 }
