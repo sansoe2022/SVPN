@@ -64,7 +64,7 @@
  ],
  "HTTPNetworks": [
   {
-   "FLAG": "true",
+   "FLAG": "truemove",
    "proto_spin": "0",
    "serverSPType": "0",
    "server_type": "ws",
@@ -79,15 +79,15 @@
    "NetworkBackQuery": ""
   },
   {
-   "FLAG": "true",
-   "proto_spin": 0,
+   "FLAG": "truemove",
+   "proto_spin": "0",
+   "serverSPType": "1",
    "server_type": "ws",
-   "serverSPType": 1,
    "Name": "True (SSH)",
    "NetworkPayload": "xE8Oz3vB+tHH\/a+dpZJrOYvnBdqApXxkjFuCvmn7oEgx71mACcYzfNfaLjULZ18XfDkv9qEDM2PgLEmofIM4uI5aCGJlBh7xj061j41Wuh5FBmd4WsyzNJtZHHm8\/YRhJtkqqJpz1gwz8L8O\/qJ\/DxckqBeJw9Zk+Eg\/ElMc7YcY10iUoNevyLfyt3n5ADnL9AfqizuySrzdz972juzRqk7D6AKxRT7\/1T69sUjkdP\/qrXF+wCt7i6\/PIwGDwnVSISJfKDBv5kc96MJ7n2B0e22AQmxuBnba+uoKNdo\/LiYEeIeVrcXbF82hvTbem6nNq626SWXONW27oUGRUlJVQ5jZZZlYcC+L5lLKyrsT9\/ss+ct9SsUFjfYom3OTcxcWQXvroN9A7OyFK5vke9rHXEsgBmUzJT7ZnwYYsho+HGt+vbsUf7uValN4eWjoTc5WcyfcEmN9g0YT82cvzZ2gsr6NX8qSQe6c0V4+\/v+mHMoE8QNHBckfrvjTyQNI2q\/tz3+xWTG4EgTiCTR\/GznuhPfhk8FQiKJxCrrGVY99Uy8PjZoMHJeSPYa3Ju8cBNBbXqm2rJCeamMqvAYiCIRLoCMukncP+0WLpgeXyPJhZvv4hCjYV+zf++w\/9cgOcEl6TOxha3Xqp4poA0gNLI4cY85rqUVrO\/joJ53gzyhF1rwYi7BDa1OE5ficbDgcLgztPQHrdO3kMBGXlH8CC2D8XWYORgRRSt\/QoVQ2JsBDXlg=",
    "Info": "no need pro",
-   "UseDefProxy": false,
-   "AutoReplace": true,
+   "UseDefProxy": "false",
+   "AutoReplace": "true",
    "SquidProxy": "Y+IFUK4TbR3cASNvVic8cEkdc2KRyB6g1CM8jkhOn11ehLc46T98ipVHiQ+Ot1Tx1Y\/1f51z51Y\/fT\/L",
    "SquidPort": "2086",
    "NetworkFrontQuery": "",
@@ -109,7 +109,7 @@
    "NetworkBackQuery": ""
   },
   {
-   "FLAG": "true",
+   "FLAG": "truemove",
    "proto_spin": "3",
    "serverSPType": "3",
    "server_type": "cf",
@@ -126,7 +126,7 @@
  ],
  "SSLNetworks": [
   {
-   "FLAG": "true",
+   "FLAG": "truemove",
    "proto_spin": "3",
    "serverSPType": "1",
    "server_type": "http",
