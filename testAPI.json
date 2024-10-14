@@ -1,8 +1,8 @@
 {
- "FileName": "shan_vpn",
- "Version": "3.4",
- "ReleaseNotes": "New Update available 3.4",
- "contactSupport": "t.me.sansoe2021",
+ "FileName": "svpn",
+ "InterUnit": "ca-app-pub-3940256099942544\/1033173712",
+ "RewardUnit": "ca-app-pub-3940256099942544\/5224354917",
+ "premiumKey": "https:\/\/sheet.best\/api\/sheets\/f7259270-da48-49f2-b327-774f74b3d923",
  "Servers": [
   {
    "Name": "Server Premium 1",
