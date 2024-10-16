@@ -1,10 +1,10 @@
 {
   
-"version": 59,
-"message": "Config version: 59 \nWhat's new \nAdded FREE new server❤️",
+"version": 60,
+"message": "Config version: 60 \nWhat's new \nFixed add time 20 hours😘",
 "fileUrl": "https://raw.githubusercontent.com/sansoe2022/SVPN/main/svpnAll_Config.txt",
 
-"RewardAmount": 5,
+"RewardAmount": 20,
 
 "messageWarning":"What's new ?\n• Updated UI \n• Added Hotshare function \n• Fixed bug and more\n \nThanks for your understand❤️",
 "title":"Can't use continue current version, you need to upgrade V1.3.0 ",
@@ -22,13 +22,6 @@
 
       },
 
-{
-
-         "name": "TH-FREE-02",
-
-         "url": "http://45.91.134.81:82/server/online_app.json"
-
-      },
   {
 
          "name": "TH-FREE-03",
