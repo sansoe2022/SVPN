@@ -6,7 +6,7 @@
  "Servers": [
   {
    "Name": "Server Premium 1",
-   "FLAG": "thailand",
+   "FLAG": "singapore",
    "Category": "2",
    "ServerIP": "PlI0w6ijSUbxNqPNqBoWsXtfT6E9+Mt33Z2rCk1SMThyZOzERNij\/uD2TLLpY3J8OcnMTCnHlxGzbcPsAVGeng87nUwisq+AOk5E7kUhJkMOPoPPit6E\/xWDRUOt\/cD58VrFAzhlRCu1eVM7xqh4KftVVlZCWDW0",
    "SlowIP": "",
@@ -25,7 +25,7 @@
   },
   {
    "Name": "Server VIP 1",
-   "FLAG": "thailand",
+   "FLAG": "myanmar",
    "Category": "1",
    "ServerIP": "PlI0w6ijSUbxNqPNqBoWsXtfT6E9+Mt33Z2rCk1SMThyZOzERNij\/uD2TLLpY3J8OcnMTCnHlxGzbcPsAVGeng87nUwisq+AOk5E7kUhJkMOPoPPit6E\/xWDRUOt\/cD58VrFAzhlRCu1eVM7xqh4KftVVlZCWDW0",
    "SlowIP": "",
@@ -44,7 +44,7 @@
   },
   {
    "Name": "Server Free 1",
-   "FLAG": "thailand",
+   "FLAG": "uk",
    "Category": "0",
    "ServerIP": "PlI0w6ijSUbxNqPNqBoWsXtfT6E9+Mt33Z2rCk1SMThyZOzERNij\/uD2TLLpY3J8OcnMTCnHlxGzbcPsAVGeng87nUwisq+AOk5E7kUhJkMOPoPPit6E\/xWDRUOt\/cD58VrFAzhlRCu1eVM7xqh4KftVVlZCWDW0",
    "SlowIP": "",
