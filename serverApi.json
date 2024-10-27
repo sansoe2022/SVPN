@@ -1,7 +1,7 @@
 {
  "FileName": "svpn",
- "InterUnit": "interstital ad",
- "RewardUnit": "reward id",
+ "InterUnit": "Interstitital unit",
+ "RewardUnit": "Reward unit",
  "premiumKey": "https:\/\/sheet.best\/api\/sheets\/f7259270-da48-49f2-b327-774f74b3d923",
  "Servers": [
   {
