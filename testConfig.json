@@ -1,13 +1,49 @@
 {
  "FileName": "svpn",
- "InterUnit": "inter1",
- "RewardUnit": "reward1",
- "premiumKey": "premium1",
- "OpenAppUnit": "open1",
- "WebUrl": "web1",
- "ContactUrl": "contact1",
- "Servers": [],
- "HTTPNetworks": [],
+ "InterUnit": "ca-app-pub-3940256099942544\/1033173712",
+ "RewardUnit": "ca-app-pub-3940256099942544\/5224354917",
+ "premiumKey": "https:\/\/sheet.best\/api\/sheets\/f7259270-da48-49f2-b327-774f74b3d923",
+ "OpenAppUnit": "ca-app-pub-3940256099942544\/9257395921",
+ "WebUrl": "https:\/\/www.youtube.com\/",
+ "ContactUrl": "fb:\/\/profile\/100015412062207",
+ "Servers": [
+  {
+   "Name": "test server free",
+   "FLAG": "thailand",
+   "Category": 0,
+   "ServerIP": "error!",
+   "SlowIP": "error!",
+   "PublicKey": "error!",
+   "V2ray": "error!",
+   "ServerCloudFront": "error!",
+   "ServerHTTP": "error!",
+   "TcpPort": "22",
+   "SSLPort": "443",
+   "ProxyPort": "8080",
+   "AutoLogIn": true,
+   "Username": "error!",
+   "Password": "error!",
+   "MultiCert": true,
+   "ovpnCertificate": "client\ndev tun\nproto tcp\nsndbuf 0\nrcvbuf 0\nremote www.opensignal.com.bangmod.sksvpn.shop 1194\nresolv-retry 5\nnobind\npersist-key\npersist-tun\nremote-cert-tls server\ncipher AES-256-CBC\ncomp-lzo yes\nsetenv opt block-outside-dns\nkey-direction 1\nverb 3\nauth-user-pass\nkeepalive 10 120\nfloat\n<ca>\n-----BEGIN CERTIFICATE-----\nMIIDQjCCAiqgAwIBAgIUMoxN7CuZqcbjwnUwWivQ31xlJs4wDQYJKoZIhvcNAQEL\nBQAwEzERMA8GA1UEAwwIQ2hhbmdlTWUwHhcNMjQxMDI0MTE0MDM3WhcNMzQxMDIy\nMTE0MDM3WjATMREwDwYDVQQDDAhDaGFuZ2VNZTCCASIwDQYJKoZIhvcNAQEBBQAD\nggEPADCCAQoCggEBAME8lJI2c4MkqBZguKwDOHX9rgvSKilCnbHpdTKb5Q9JtKOz\ndHgpjmxjVl8\/qiYeG4FTme1e3kfEZsKUIcn6ZwNnpNfTsKE7DVVPKGa5DYg1EHXi\nyy6Q7VmU4MwzHPUfLXI90DM+AE1Vx75MtAoq8XU2Lv2ARAtg1ije4h5ltuYz\/BbA\nEYrZf8wUrHZLFC2vXmfFw69LJi5V8Cx58BR58546yRgG8RWeTjf7EmtkAbKH68T2\nlooSd71RRdVy1AxODSnDdu2P4wPbVuendv1VpbxqIaWp6q890I8Fky2uaNk9l65i\nWvbS1GIGolkWYh6uzRXfLTtRJF0OZHvEXHvp9hcCAwEAAaOBjTCBijAdBgNVHQ4E\nFgQUecTVFd1MaPdo0oCEItcv92rOTUcwTgYDVR0jBEcwRYAUecTVFd1MaPdo0oCE\nItcv92rOTUehF6QVMBMxETAPBgNVBAMMCENoYW5nZU1lghQyjE3sK5mpxuPCdTBa\nK9DfXGUmzjAMBgNVHRMEBTADAQH\/MAsGA1UdDwQEAwIBBjANBgkqhkiG9w0BAQsF\nAAOCAQEAetI3EOa5OFBYBy9wWr\/noe2NeChZ341BPOyr3mbam65n31FdT4i9uk3y\nqYuYk2rS8mJ8g7ByssczBulWGzwIogQvD0qu\/7GRDwUzFCDQfDXH1rvo8NvwMAC8\ncA34ep5cDsBVyUFkv3T9QuOc0q1V56t7GaGUHNhLO0MO\/cXcrQVhWIhhMsCOGZcq\ndB68c4lul3v+awvFdFV\/m2V9BvPlD0cfFohatrUYTzwSxHow4kpvVq\/qOS1zV+2e\nQuQthlHVTKej+wNFfTeTz0h46zxqz2qoxa1xlx9iY\/8gyavY+lXOeWqZ4dpoEQHq\n\/PSVFuXYj8sLruqvh+JNpfPp3S2azQ==\n-----END CERTIFICATE-----\n<\/ca>\n<cert>\nCertificate:\n    Data:\n        Version: 3 (0x2)\n        Serial Number: 3 (0x3)\n        Signature Algorithm: sha256WithRSAEncryption\n        Issuer: CN=ChangeMe\n        Validity\n            Not Before: Oct 24 11:43:10 2024 GMT\n            Not After : Oct 22 11:43:10 2034 GMT\n        Subject: CN=sansoe\n        Subject Public Key Info:\n            Public Key Algorithm: rsaEncryption\n                RSA Public-Key: (2048 bit)\n                Modulus:\n                    00:b4:01:c4:4e:30:06:c1:97:0e:45:c3:18:c6:8d:\n                    62:2d:eb:b2:66:c9:99:38:b7:57:b4:79:35:59:7b:\n                    23:68:1d:2d:20:7f:c2:47:37:08:f5:f0:67:c0:51:\n                    f4:b6:23:ce:12:31:f9:2a:6a:94:68:7d:3c:8d:15:\n                    43:b8:54:7a:76:29:1d:62:01:b6:61:75:ca:cb:93:\n                    28:00:57:1b:40:e3:3d:50:5c:c1:d5:65:6e:dc:a4:\n                    1b:94:f3:05:f3:68:c5:6b:ff:d5:5f:d6:d1:7f:e6:\n                    8e:48:f7:9c:cd:9d:41:c6:6a:c1:58:65:fd:6c:b7:\n                    c1:34:d1:62:6e:de:94:61:bb:88:dc:a3:97:ec:86:\n                    2b:e8:1d:60:9f:e4:b2:c7:77:cc:dc:d9:d6:8e:ed:\n                    1e:ac:fd:ee:56:2f:06:c4:ad:36:67:fb:70:d5:a9:\n                    f9:56:7e:eb:02:61:11:80:ef:7a:30:57:6e:1a:fa:\n                    b0:78:27:fb:28:95:09:95:d5:15:a1:bb:6b:6a:30:\n                    ff:6d:8e:ef:9f:7e:7b:9f:07:7d:27:38:ce:86:65:\n                    71:c1:a6:e6:ec:3f:e4:27:21:99:02:b3:85:d7:a6:\n                    8d:2e:20:68:34:73:94:cd:1e:0b:8b:62:64:eb:b8:\n                    05:ac:88:3f:8b:da:07:63:61:58:5f:8f:a8:06:57:\n                    57:07\n                Exponent: 65537 (0x10001)\n        X509v3 extensions:\n            X509v3 Basic Constraints: \n                CA:FALSE\n            X509v3 Subject Key Identifier: \n                93:4B:6E:CD:07:8A:33:90:0A:62:D8:48:06:7A:C1:C0:99:01:92:BF\n            X509v3 Authority Key Identifier: \n                keyid:79:C4:D5:15:DD:4C:68:F7:68:D2:80:84:22:D7:2F:F7:6A:CE:4D:47\n                DirName:\/CN=ChangeMe\n                serial:32:8C:4D:EC:2B:99:A9:C6:E3:C2:75:30:5A:2B:D0:DF:5C:65:26:CE\n\n            X509v3 Extended Key Usage: \n                TLS Web Client Authentication\n            X509v3 Key Usage: \n                Digital Signature\n    Signature Algorithm: sha256WithRSAEncryption\n         51:ed:12:4b:6f:54:31:5e:b3:83:08:48:53:a4:bd:14:08:3a:\n         70:e6:3c:1a:e2:7c:ba:40:3d:ea:8c:32:58:98:0f:2b:b7:98:\n         be:9e:be:65:bb:df:50:7a:fc:50:9f:61:27:63:50:89:51:4c:\n         47:2f:e8:26:fa:f1:05:8b:a4:4b:6f:c8:51:a6:b4:d9:6b:f0:\n         f4:77:63:16:10:40:0d:8f:1c:62:1a:93:52:26:52:51:03:67:\n         ca:6c:f4:f5:15:56:c1:cf:fb:7c:9e:37:5f:c1:d8:e1:ae:4f:\n         a8:a1:d7:46:61:f8:23:0a:22:3a:b8:25:25:9f:be:c2:aa:05:\n         3e:ce:aa:76:a3:fe:8c:47:fd:3d:c0:87:ff:f1:5c:6e:ac:3b:\n         67:75:90:90:97:19:fb:74:dc:10:c2:27:f3:61:ef:55:06:56:\n         b9:1f:f3:65:71:5f:c2:90:3f:4b:c4:bc:0d:38:0e:fe:45:62:\n         90:08:8f:87:96:d8:10:72:ae:e8:6b:f1:f8:c0:10:5d:eb:1e:\n         e0:da:7a:57:7f:59:05:59:8c:e4:02:c6:48:9c:b9:67:66:e8:\n         80:f7:7d:60:f6:e0:7e:a7:06:72:63:7f:c1:61:ab:52:4b:73:\n         39:5d:23:4f:e6:d5:b1:91:7f:70:00:18:8d:1a:8d:ba:f3:bc:\n         ca:76:bc:6b\n-----BEGIN CERTIFICATE-----\nMIIDPzCCAiegAwIBAgIBAzANBgkqhkiG9w0BAQsFADATMREwDwYDVQQDDAhDaGFu\nZ2VNZTAeFw0yNDEwMjQxMTQzMTBaFw0zNDEwMjIxMTQzMTBaMBExDzANBgNVBAMM\nBnNhbnNvZTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALQBxE4wBsGX\nDkXDGMaNYi3rsmbJmTi3V7R5NVl7I2gdLSB\/wkc3CPXwZ8BR9LYjzhIx+SpqlGh9\nPI0VQ7hUenYpHWIBtmF1ysuTKABXG0DjPVBcwdVlbtykG5TzBfNoxWv\/1V\/W0X\/m\njkj3nM2dQcZqwVhl\/Wy3wTTRYm7elGG7iNyjl+yGK+gdYJ\/kssd3zNzZ1o7tHqz9\n7lYvBsStNmf7cNWp+VZ+6wJhEYDvejBXbhr6sHgn+yiVCZXVFaG7a2ow\/22O759+\ne58HfSc4zoZlccGm5uw\/5CchmQKzhdemjS4gaDRzlM0eC4tiZOu4BayIP4vaB2Nh\nWF+PqAZXVwcCAwEAAaOBnzCBnDAJBgNVHRMEAjAAMB0GA1UdDgQWBBSTS27NB4oz\nkApi2EgGesHAmQGSvzBOBgNVHSMERzBFgBR5xNUV3Uxo92jSgIQi1y\/3as5NR6EX\npBUwEzERMA8GA1UEAwwIQ2hhbmdlTWWCFDKMTewrmanG48J1MFor0N9cZSbOMBMG\nA1UdJQQMMAoGCCsGAQUFBwMCMAsGA1UdDwQEAwIHgDANBgkqhkiG9w0BAQsFAAOC\nAQEAUe0SS29UMV6zgwhIU6S9FAg6cOY8GuJ8ukA96owyWJgPK7eYvp6+ZbvfUHr8\nUJ9hJ2NQiVFMRy\/oJvrxBYukS2\/IUaa02Wvw9HdjFhBADY8cYhqTUiZSUQNnymz0\n9RVWwc\/7fJ43X8HY4a5PqKHXRmH4IwoiOrglJZ++wqoFPs6qdqP+jEf9PcCH\/\/Fc\nbqw7Z3WQkJcZ+3TcEMIn82HvVQZWuR\/zZXFfwpA\/S8S8DTgO\/kVikAiPh5bYEHKu\n6Gvx+MAQXese4Np6V39ZBVmM5ALGSJy5Z2bogPd9YPbgfqcGcmN\/wWGrUktzOV0j\nT+bVsZF\/cAAYjRqNuvO8yna8aw==\n-----END CERTIFICATE-----\n<\/cert>\n<key>\n-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC0AcROMAbBlw5F\nwxjGjWIt67JmyZk4t1e0eTVZeyNoHS0gf8JHNwj18GfAUfS2I84SMfkqapRofTyN\nFUO4VHp2KR1iAbZhdcrLkygAVxtA4z1QXMHVZW7cpBuU8wXzaMVr\/9Vf1tF\/5o5I\n95zNnUHGasFYZf1st8E00WJu3pRhu4jco5fshivoHWCf5LLHd8zc2daO7R6s\/e5W\nLwbErTZn+3DVqflWfusCYRGA73owV24a+rB4J\/solQmV1RWhu2tqMP9tju+ffnuf\nB30nOM6GZXHBpubsP+QnIZkCs4XXpo0uIGg0c5TNHguLYmTruAWsiD+L2gdjYVhf\nj6gGV1cHAgMBAAECggEBAKVI7gjhPoLqAjf6gbhnQBxsTP7m5CNY7laP6XXFhOhn\nyfUKesjLdxXk7k+AsZPBYsoASwswnB8px7zAJtON9nijHhDNA7uP3mt5LwTI9wRo\n4\/bzhSQ+JELDCXSGhhNQQ978Jd\/\/r5Sijknf24JNgIUBp5FU7ROz0tt928Vz6Ymm\njx1fiRN1DAsy7as9k2OTtu2lKigX\/uPsafj829xJ8s+NcTteHNQEHGuYmn46CL4z\nJLn6u5uYAAEjnbfdymLcRW3WhdqA04gIKK9Qy\/RWspuJym7bg4F3MN5Xtm4bJJ8+\nRZTKumOoJXZ8NntD2cB65keLOlXa1aYlVhmt3tCY5XECgYEA50peNfL7SKcfWc0f\nNuTeaLD5tlDGtZVFiT6VsJyOMCVBndjBxpMMk\/5dkHz+DpfRWvv+kMpmP+3Rj1SH\n08+tM30EHHddHNK7aOwnLGKx1EWQFLF\/px8rSPWdsPi2vqW7F8VwqZDB2VZfXNbY\nhwF2oO8H6ciFQyBv1+BT1aPgwY8CgYEAxzzUHWyI+KJPQV0PGDB0DhVjSRTJX3\/9\n3XTarAM\/UBJbAUyOLisg1ERCXvUpeQD3j+TNuLpLmbpP6BTh5ABwjAEebIOjCcFQ\nxCCfNIC0kbP8iAOgCxe5ejRo61QGDIoq6NcB2BgsiQ3bUkCykOA3mxbFlG0Bf6jh\nbch36ulwZwkCgYAQhuzieAFiuKZx2Ulwt7v4ySSe1XjNguQcIX+6xgUXBaKBr\/pw\nwRM2BAgVigjxbAHGuZkAKaZSzSCbWFP4W6+prTY8\/n6Fz70aiz1lW4wPegUIpYJU\no9KI\/RwOiEcuqlMLKM2bID\/p0tUvoh6Izx718v6iwvRazpePWnVDH9mwmwKBgDD4\n\/baB0CU1WD\/bzPMILe6sSSxUhK8Jue\/uYjW30p8u89mc5LHqffZPFPVcU6Zfm3pu\nJjcK67xMtIl6YI\/3n7J6L+1CahfiwaSD1D5GiJvr3t3b7kHrwfaM3WFC1P3OFIAJ\nIXXpc0D4+\/j62CmOQ3zGmyhBpwWnEEo45WkDmlJpAoGAP2hQMX\/8CTgRdwT5wDZi\nkNYKiDiVnFcqHnXzCCYfwYyTu06iDT7TGb81VwIvkMw8kh4uefAr+4XSOup1BsgL\no+bVVRId+m4qpIwRRNFRyjDRS25xJOMNrnBqXYvy1JLN1MLNKmwY\/WtjHDZ38emA\n1zAAcTjh89hrw4C3ls27KiE=\n-----END PRIVATE KEY-----\n<\/key>\n<tls-auth>\n#\n# 2048 bit OpenVPN static key\n#\n-----BEGIN OpenVPN Static key V1-----\nf0cfe81d7cffca050677d2abb7d20848\na7b928f3a2ddfb60207687c4c50dcb72\n9d7863aefbd11c972e01b28291940d50\n461cccc0c3b5b5094f5efaa09c1fdc25\ne3a0c14f101a015d9c8a5426c164718f\n563d82e64780c7a859c9c8b4674cf10f\n3c469a7876bbd94c6a7bfe9b9dbf25b1\n4d875562d2684394196c4f07cc264ac1\ne2952902ff154e64cde8ae8b50a1558d\n421840c9e24aa5fb11136ac8f8e04d5b\n2a6ca9c31fef351ecca53caca1b7c8a2\n12099e2cea9551279b5a00f94c497b41\n34ff258f80c18a8f281815208d95d6bd\n760ff885a384686b339d17952b1e4082\nbc1dced0afb137ec2ba0aba55848700b\n987e94bc995b9f6ff4505dcc53f03821\n-----END OpenVPN Static key V1-----\n<\/tls-auth>\n"
+  }
+ ],
+ "HTTPNetworks": [
+  {
+   "FLAG": "truemove",
+   "proto_spin": 0,
+   "server_type": "ws",
+   "serverSPType": 0,
+   "Name": "ovpn true",
+   "NetworkPayload": "error!",
+   "Info": "",
+   "UseDefProxy": false,
+   "AutoReplace": false,
+   "SquidProxy": "error!",
+   "SquidPort": "8880",
+   "NetworkFrontQuery": "error!",
+   "NetworkBackQuery": "error!"
+  }
+ ],
  "SSLNetworks": [],
  "Ovpn_Cert": "client\ndev tun\nproto tcp\nremote SERVERIPADDRESSHERE 1194\ncipher none\nauth none\nauth-user-pass\nping-timer-rem\nredirect-gateway def1\nsetenv CLIENT_CERT 0\nverb 3\n<ca>\n-----BEGIN CERTIFICATE-----\nMIICMTCCAZqgAwIBAgIUAaQBApMS2dYBqYPcA3Pa7cjjw7cwDQYJKoZIhvcNAQEL\nBQAwDzENMAsGA1UEAwwES29iWjAeFw0yMDA3MjIyMjIzMzNaFw0zMDA3MjAyMjIz\nMzNaMA8xDTALBgNVBAMMBEtvYlowgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGB\nAMF46UVi2O5pZpddOPyzU2EyIrr8NrpXqs8BlYhUjxOcCrkMjFu2G9hk7QIZ4qO0\nGWVZpPhYk5qWk+LxCsryrSoe0a5HaqIye8BFJmXV0k+O\/3e6k06UGNii3gxBWQpF\n7r\/2CyQLus9OSpQPYszByBvtkwiBAo\/V98jdpm+EVu6tAgMBAAGjgYkwgYYwHQYD\nVR0OBBYEFGRJMm\/+ZmLxV027kahdvSY+UaTSMEoGA1UdIwRDMEGAFGRJMm\/+ZmLx\nV027kahdvSY+UaTSoROkETAPMQ0wCwYDVQQDDARLb2JaghQBpAECkxLZ1gGpg9wD\nc9rtyOPDtzAMBgNVHRMEBTADAQH\/MAsGA1UdDwQEAwIBBjANBgkqhkiG9w0BAQsF\nAAOBgQC0f8wb5hyEOEEX64l8QCNpyd\/WLjoeE5bE+xnIcKE+XpEoDRZwugLoyQdc\nHKa3aRHNqKpR7H696XJReo4+pocDeyj7rATbO5dZmSMNmMzbsjQeXux0XjwmZIHu\neDKMefDi0ZfiZmnU2njmTncyZKxv18Ikjws0Myc8PtAxy2qdcA==\n-----END CERTIFICATE-----\n<\/ca>"
 }
