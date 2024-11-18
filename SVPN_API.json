@@ -1,7 +1,7 @@
 {
   
-"version": 69,
-"message": "12:25PM 18/11/2024\nConfig version: 69 \nWhat's new \n\nDtac NoPro ရပါပြီ ဘာစမတ်မှမလိုပါ ",
+"version": 70,
+"message": "12:25PM 18/11/2024\nConfig version: 70 \nWhat's new \n\nAdd time အချိန်တိုးတာ ပြုပြင်ထားပါတယ် ",
 "fileUrl": "https://raw.githubusercontent.com/sansoe2022/SVPN/refs/heads/main/SVPN_CONFIG.json",
 
 "messageWarning":"What's new ?\n• Updated UI \n• Added Hotshare function \n• Fixed bug and more\n \nThanks for your understand❤️",
