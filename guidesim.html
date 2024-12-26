@@ -130,11 +130,24 @@
     
 
 <script>
-    function openInBrowser() {
-        window.open("https://topping.truemoveh.com/", "_blank");
+    function isWebView() {
+        let userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        return /wv|WebView/i.test(userAgent);
     }
-</script>
 
+    </script>
+
+<script> function openInBrowser() { 
+
+if (isWebView()) {
+        window.location.href = "https://topping.truemoveh.com/";
+    }
+
+ } 
+
+
+
+</script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
