@@ -104,14 +104,13 @@
             }
         }
 
-        /* Blur effect CSS */
-        .blurred-logo {
-            filter: blur(5px); /* Blur radius ကို ဒီနေရာမှာ ပြောင်းနိုင်ပါတယ် */
-            transition: filter 0.3s ease; /* Animation အတွက်ပါ */
-        }
-
-        .blurred-logo:hover {
-            filter: blur(0); /* Mouse hover လုပ်ရင် blur effect ပျောက်သွားပါမယ် */
+        /* Backdrop Blur effect CSS */
+        .backdrop-blur-logo {
+            backdrop-filter: blur(10px); /* Blur radius ကို ဒီနေရာမှာ ပြောင်းနိုင်ပါတယ် */
+            background-color: rgba(255, 255, 255, 0.5); /* Background color ထည့်ပေးမှ blur effect ပေါ်လွင်မယ် */
+            border-radius: 10px; /* Option: အဝိုင်းပုံစံ border ထည့်ချင်ရင် */
+            padding: 5px; /* Option: အတွင်း padding ထည့်ချင်ရင် */
+            display: inline-block; /* width auto ဖြစ်အောင် */
         }
     </style>
 </head>
@@ -152,7 +151,9 @@
         <div class="container py-5">
             <div class="row justify-content-center mb-4">
                 <div class="col-12 col-md-7 text-center">
-                    <img class="logo-img blurred-logo" src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/icon.png" alt="SVPN Logo">
+                    <div class="backdrop-blur-logo">
+                        <img class="logo-img" src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/icon.png" alt="SVPN Logo">
+                    </div>
                     <h1 class="display-5 fw-bold mb-3" style="color:#0d6efd;">SVPN</h1>
                     <p class="lead mb-4">ထိုင်းရောက်ရွှေမြန်မာများတို့အတွက် အင်တာနက်ကို ကုန်ကျသက်သာအောင် မြန်ဆန် လုံခြုံသော SVPNကို ရယူလိုက်ပါ။ သင့်ရဲ့ကိုယ်ရေးအချက်အလက်တွေကိုလည်း ခေတ်မီနည်းပညာနဲ့ ကာကွယ်ထားပါတယ်   </p>
                     <div class="d-flex justify-content-center gap-3 flex-wrap">
