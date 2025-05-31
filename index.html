@@ -19,6 +19,16 @@
             width: 96px;
             height: auto;
             margin-bottom: 12px;
+            filter: drop-shadow(0 0 20px rgba(13, 110, 253, 0.6)) 
+                    drop-shadow(0 0 40px rgba(50, 202, 254, 0.4))
+                    drop-shadow(0 0 60px rgba(13, 110, 253, 0.3));
+            transition: all 0.3s ease;
+        }
+        .logo-img:hover {
+            filter: drop-shadow(0 0 30px rgba(13, 110, 253, 0.8)) 
+                    drop-shadow(0 0 50px rgba(50, 202, 254, 0.6))
+                    drop-shadow(0 0 80px rgba(13, 110, 253, 0.4));
+            transform: scale(1.05);
         }
         .feature-icon {
             font-size: 2rem;
@@ -103,15 +113,6 @@
                 margin-bottom: 0.5rem;
             }
         }
-
-        /* Backdrop Blur effect CSS */
-        .backdrop-blur-logo {
-            backdrop-filter: blur(10px); /* Blur radius ကို ဒီနေရာမှာ ပြောင်းနိုင်ပါတယ် */
-            background-color: rgba(255, 255, 255, 0.5); /* Background color ထည့်ပေးမှ blur effect ပေါ်လွင်မယ် */
-            border-radius: 10px; /* Option: အဝိုင်းပုံစံ border ထည့်ချင်ရင် */
-            padding: 5px; /* Option: အတွင်း padding ထည့်ချင်ရင် */
-            display: inline-block; /* width auto ဖြစ်အောင် */
-        }
     </style>
 </head>
 <body>
@@ -119,7 +120,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/icon.png" alt="SVPN Logo" style="width:36px; height:auto;">
+                <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/icon.png" alt="SVPN Logo" style="width:36px; height:auto; filter: drop-shadow(0 0 10px rgba(13, 110, 253, 0.5)) drop-shadow(0 0 20px rgba(50, 202, 254, 0.3)); transition: all 0.3s ease;" onmouseover="this.style.filter='drop-shadow(0 0 15px rgba(13, 110, 253, 0.7)) drop-shadow(0 0 25px rgba(50, 202, 254, 0.5))'" onmouseout="this.style.filter='drop-shadow(0 0 10px rgba(13, 110, 253, 0.5)) drop-shadow(0 0 20px rgba(50, 202, 254, 0.3))'">
                 SVPN
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#svpnNavbar" aria-controls="svpnNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -151,9 +152,7 @@
         <div class="container py-5">
             <div class="row justify-content-center mb-4">
                 <div class="col-12 col-md-7 text-center">
-                    <div class="backdrop-blur-logo">
-                        <img class="logo-img" src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/icon.png" alt="SVPN Logo">
-                    </div>
+                    <img class="logo-img" src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/icon.png" alt="SVPN Logo">
                     <h1 class="display-5 fw-bold mb-3" style="color:#0d6efd;">SVPN</h1>
                     <p class="lead mb-4">ထိုင်းရောက်ရွှေမြန်မာများတို့အတွက် အင်တာနက်ကို ကုန်ကျသက်သာအောင် မြန်ဆန် လုံခြုံသော SVPNကို ရယူလိုက်ပါ။ သင့်ရဲ့ကိုယ်ရေးအချက်အလက်တွေကိုလည်း ခေတ်မီနည်းပညာနဲ့ ကာကွယ်ထားပါတယ်   </p>
                     <div class="d-flex justify-content-center gap-3 flex-wrap">
@@ -186,7 +185,7 @@
                             <i class="bi bi-shield-lock-fill"></i>
                         </div>
                         <h5 class="fw-bold mb-2">Protect Your Privacy</h5>
-                        <p>Your online activity stays private & secure with strong encryption.</p>
+                        <p>Your online activity stays private &amp; secure with strong encryption.</p>
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
