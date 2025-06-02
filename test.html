@@ -68,6 +68,27 @@
             font-weight: 700;
             letter-spacing: 1px;
         }
+        /* Custom navbar styling */
+        .custom-navbar {
+            background: linear-gradient(135deg, #0d6efd 0%, #32cafe 100%) !important;
+            box-shadow: 0 2px 15px rgba(13, 110, 253, 0.3);
+        }
+        .custom-navbar .navbar-brand,
+        .custom-navbar .nav-link {
+            color: #ffffff !important;
+        }
+        .custom-navbar .nav-link:hover,
+        .custom-navbar .nav-link.active {
+            color: #e0e7ff !important;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+        .custom-navbar .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .custom-navbar .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
         .footer {
             background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             color: #ffffff;
@@ -129,10 +150,10 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <nav class="navbar navbar-expand-lg custom-navbar">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/icon.png" alt="SVPN Logo" style="width:36px; height:auto; filter: drop-shadow(0 0 10px rgba(13, 110, 253, 0.4));">
+                <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/icon.png" alt="SVPN Logo" style="width:36px; height:auto;">
                 SVPN
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#svpnNavbar" aria-controls="svpnNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -172,7 +193,7 @@
                             <i class="bi bi-download"></i> Download SVPN
                         </a>
                         <a href="guidesim.html" class="btn btn-outline-primary guide-btn me-2 mb-2">
-                            <i class="bi bi-journal-code"></i> Guide
+                            <i class="bi bi-journal-code"></i> စမတ်နည်း လမ်းညွှန်
                         </a>
                         <a href="http://online.sksfree.shop:81/online/online.php" class="btn online-users-btn mb-2">
                             <i class="bi bi-person-lines-fill"></i> Online Users ကြည့်ရန်
