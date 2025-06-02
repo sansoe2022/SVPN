@@ -16,12 +16,115 @@
         .true { color: #e60012; }
         .ais { color: #00b900; }
         .img-thumbnail { margin-bottom: 8px; }
-        .toggle-btn { display: flex; align-items: center; gap: 7px; }
-        .collapse-icon { transition: transform 0.2s; }
-        .collapse.show .collapse-icon { transform: rotate(180deg); }
+        
+        /* Enhanced Toggle Button Styles */
+        .toggle-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            font-weight: 500;
+            border-radius: 12px;
+            padding: 12px 18px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 100%);
+        }
+        
+        .toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        
+        .toggle-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Arrow Icon Styles */
+        .collapse-icon {
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            font-size: 1.2rem;
+            color: inherit;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .toggle-btn[aria-expanded="true"] .collapse-icon {
+            transform: rotate(180deg);
+            background: rgba(255,255,255,0.3);
+        }
+        
+        /* Different colored buttons */
+        .btn-outline-primary.toggle-btn {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            border: none;
+        }
+        
+        .btn-outline-primary.toggle-btn:hover {
+            background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+            color: white;
+        }
+        
+        .btn-outline-danger.toggle-btn {
+            background: linear-gradient(135deg, #e60012 0%, #b8000e 100%);
+            color: white;
+            border: none;
+        }
+        
+        .btn-outline-danger.toggle-btn:hover {
+            background: linear-gradient(135deg, #b8000e 0%, #8a000a 100%);
+            color: white;
+        }
+        
+        .btn-outline-success.toggle-btn {
+            background: linear-gradient(135deg, #00b900 0%, #008f00 100%);
+            color: white;
+            border: none;
+        }
+        
+        .btn-outline-success.toggle-btn:hover {
+            background: linear-gradient(135deg, #008f00 0%, #006600 100%);
+            color: white;
+        }
+        
+        /* Collapse content animation */
+        .collapse {
+            transition: all 0.3s ease-in-out;
+        }
+        
         .section-title { font-size: 1.14rem; font-weight: 500; }
+        
+        /* Pulse animation for buttons */
+        @keyframes pulse {
+            0% { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+            50% { box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+            100% { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        }
+        
+        .toggle-btn:focus {
+            animation: pulse 0.6s ease-in-out;
+        }
+        
         @media (max-width: 767px) {
             .card { margin-bottom: 1.5rem; }
+            .toggle-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            .collapse-icon {
+                width: 20px;
+                height: 20px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -71,23 +174,29 @@
                             <img src="https://www.dtac.co.th/dtac-library/assets/img/icons/ico-dtac.png" alt="Dtac Logo" style="max-height: 38px; width: auto;" class="me-2">
                             <span class="section-title dtac">Dtac</span>
                         </div>
-                        <p>Dtac ဆင်းမ်ကဒ်သုံးတယ်ဆိုရင် ဒီအောက်က ပက်ကေ့ကို စမတ်ပြီးမှ VPN ချိတ်သုံးလို့ရပါတယ် </p>
+                        <p>Dtac ဆင်းမ်ကဒ်သုံးတယ်ဆိုရင် ဒီအောက်က ပက်ကေ့တစ်ခုခုကို စမတ်ပြီးမှ VPN ချိတ်သုံးလို့ရပါတယ် </p>
                         <button class="btn btn-outline-primary w-100 toggle-btn" type="button" data-bs-toggle="collapse" data-bs-target="#dtacLayout" aria-expanded="false" aria-controls="dtacLayout">
-                            Dtac ဆင်းမ်အတွက် ဖတ်ရန် 
+                            <span>Dtac ဆင်းမ်အတွက် ဖတ်ရန်</span>
                             <i class="bi bi-chevron-down collapse-icon"></i>
                         </button>
+                        
                         <div class="collapse mt-2" id="dtacLayout">
-                            <p>Gaming ပက်ကေ့ - 90ရက် / 61ဘတ်</p>
-                            <p>စမတ်နည်းက အောက်ကပုံတွေကို ကြည့်ပြီး လိုက်စမတ်ပါဗျ</p>
+                            <p>ပထမနည်း - Jaidee 64kbps ပက်ကေ့ - 30ရက် / 30ဘတ်</p>
+                            <p><b>*117*30#</b> <button class="btn btn-primary btn-sm" onclick="location.href='tel:*117*30%23'">စမတ်ရန် နှိပ်ပါ</button></p>
+                            <p>(Jaidee ပက်ကေ့ စမတ်ပြီးရင် Dtac Jaidee ဖိုင်ကို ရွေးပြီး ချိတ်ပါဗျ)</p>
+                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_jaidee.jpg" class="img-thumbnail" alt="ပုံ (1)">
+                            
+                            <p>ဒုတိယနည်း - Gaming ပက်ကေ့ - 90ရက် / 61ဘတ်</p>
+                            <p>စမတ်နည်းက အောက်ကပုံတွေကို ကြည့်ပြီး လိုက်စမတ်ပါဗျ</p>
                             <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming1.jpg" class="img-thumbnail" alt="ပုံ (1)">
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming2.jpg" class="img-thumbnail" alt="ပုံ (2)">
+                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming2.jpg" class="img-thumbnail" alt="ပuံ (2)">
                             <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming3.jpg" class="img-thumbnail" alt="ပုံ (3)">
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming4.jpg" class="img-thumbnail" alt="ပုံ (4)">
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming5.jpg" class="img-thumbnail" alt="ပုံ (5)">
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming6.jpg" class="img-thumbnail" alt="ပုံ (6)">
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming7.jpg" class="img-thumbnail" alt="ပုံ (7)">
+                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming4.jpg" class="img-thumbnail" alt="ပuံ (4)">
+                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming5.jpg" class="img-thumbnail" alt="ပuံ (5)">
+                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming6.jpg" class="img-thumbnail" alt="ပuံ (6)">
+                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming7.jpg" class="img-thumbnail" alt="ပuံ (7)">
                             <p class="mt-4">(Gaming ပက်ကေ့ စမတ်ပြီးရင် Dtac Gaming ဖိုင်ကို ရွေးပြီး ချိတ်ပါဗျ)</p>
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming8.jpg" class="img-thumbnail" alt="ပုံ (8)">
+                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming8.jpg" class="img-thumbnail" alt="ပuံ (8)">
                         </div>
                     </div>
                 </div>
@@ -102,20 +211,20 @@
                         </div>
                         <p>True ဆင်းမ်ကဒ်သုံးတယ်ဆိုရင် အောက်က ပက်ကေ့ တစ်ခုခုကို စမတ်ပြီးမှ VPN ချိတ်သုံးလို့ရမှာပါ </p>
                         <button class="btn btn-outline-danger w-100 toggle-btn" type="button" data-bs-toggle="collapse" data-bs-target="#trueLayout" aria-expanded="false" aria-controls="trueLayout">
-                            TrueMove ဆင်းမ်အတွက် ဖတ်ရန် 
+                            <span>TrueMove ဆင်းမ်အတွက် ဖတ်ရန်</span>
                             <i class="bi bi-chevron-down collapse-icon"></i>
                         </button>
                         <div class="collapse mt-2" id="trueLayout">
                             <p>ပထမနည်း - VDO ပက်ကေ့ 54 ဘတ် / 30 ရက်</p>
                             <p><b>*900*1347#</b> <button class="btn btn-primary btn-sm" onclick="location.href='tel:*900*1347%23'">စမတ်ရန် နှိပ်ပါ</button></p>
                             <p>(VDO ပက်ကေ့ စမတ်ပြီးရင် True VDO ဖိုင်ကို ရွေးပြီး ချိတ်ပါဗျ)</p>
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/true_vdo.png" class="img-thumbnail" alt="ပုံ (1)">
+                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/true_vdo.png" class="img-thumbnail" alt="ပuံ (1)">
                             <p class="mt-4">ဒုတိယနည်း - Viber ပက်ကေ့</p>
                             <p>6 ဘတ် / 1 ရက် <br> <b>*900*3912#</b> <button class="btn btn-primary btn-sm" onclick="location.href='tel:*900*3912%23'">စမတ်ရန် နှိပ်ပါ</button></p>
                             <p>21 ဘတ် / 7 ရက် <br> <b>*900*3913#</b> <button class="btn btn-primary btn-sm" onclick="location.href='tel:*900*3913%23'">စမတ်ရန် နှိပ်ပါ</button></p>
                             <p>53 ဘတ် / 30 ရက် <br> <b>*900*3809#</b> <button class="btn btn-primary btn-sm" onclick="location.href='tel:*900*3809%23'">စမတ်ရန် နှိပ်ပါ</button></p>
                             <p>(Viber ပက်ကေ့ စမတ်ပြီးရင် True Viber ဖိုင်ကို ရွေးပြီး ချိတ်ပါဗျ)</p>
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/true_viber.jpg" class="img-thumbnail" alt="ပုံ (1)">
+                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/true_viber.jpg" class="img-thumbnail" alt="ပuံ (1)">
                         </div>
                     </div>
                 </div>
@@ -130,17 +239,17 @@
                         </div>
                         <p>Ais ဆင်းမ် သုံးပါက အောက်က ပက်ကေ့နှစ်ခုလုံး စမတ်ပေးဖို့ လိုအပ်ပါတယ် </p>
                         <button class="btn btn-outline-success w-100 toggle-btn" type="button" data-bs-toggle="collapse" data-bs-target="#aisLayout" aria-expanded="false" aria-controls="aisLayout">
-                            Ais ဆင်းမ်အတွက် ဖတ်ရန် 
+                            <span>Ais ဆင်းမ်အတွက် ဖတ်ရန်</span>
                             <i class="bi bi-chevron-down collapse-icon"></i>
                         </button>
                         <div class="collapse mt-2" id="aisLayout">
-                            <p>ပင်မပရိုမိုးရှင်း နှင့် Ais play ပရိုမိုးရှင်း နှစ်ခုလုံး စမတ်ပြီးရင် Ais_Play ဖိုင်ကို ရွေးချိတ်သုံးပါ</p>
+                            <p>ပင်မပရိုမိုးရှင်း နှင့် Ais play ပရိုမိုးရှင်း နှစ်ခုလုံး စမတ်ပြီးရင် Ais_Play ဖိုင်ကို ရွေးချိတ်သုံးပါ</p>
                             <p>ပင်မ ပရိုမိုးရှင်း 64kbps - 32 ဘတ် / 30ရက်</p>
                             <p><b>*777*7067#</b> <button class="btn btn-success btn-sm" onclick="location.href='tel:*777*7067%23'">စမတ်ရန် နှိပ်ပါ</button></p>
                             <p>Ais Play ပရိုမိုးရှင်း - 64 ဘတ် / 30 ရက်</p>
                             <p><b>*777*885#</b> <button class="btn btn-success btn-sm" onclick="location.href='tel:*777*885%23'">စမတ်ရန် နှိပ်ပါ</button></p>
                             <p class="true">မှတ်ချက်။ ပရိုမိုးရှင်း နှစ်ခုလုံး စမတ်ပြီးမှ သုံးလို့ရပါတယ်ခင်ဗျာ</p>
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/ais_play.png" class="img-thumbnail" alt="ပုံ (1)">
+                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/ais_play.png" class="img-thumbnail" alt="ပuံ (1)">
                         </div>
                     </div>
                 </div>
