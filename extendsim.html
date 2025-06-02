@@ -15,12 +15,56 @@
         .true { color: #e60012; }
         .ais { color: #00b900; }
         .img-thumbnail { margin-bottom: 8px; }
-        .toggle-btn { display: flex; align-items: center; gap: 7px; }
-        .collapse-icon { transition: transform 0.2s; }
-        .collapse.show .collapse-icon { transform: rotate(180deg); }
+        .toggle-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: linear-gradient(145deg, #ffffff, #f0f4ff);
+        }
+        .toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .toggle-btn.dtac-btn {
+            border-color: #007bff;
+            color: #007bff;
+        }
+        .toggle-btn.true-btn {
+            border-color: #e60012;
+            color: #e60012;
+        }
+        .toggle-btn.ais-btn {
+            border-color: #00b900;
+            color: #00b900;
+        }
+        .toggle-btn[aria-expanded="true"] {
+            background: linear-gradient(145deg, #f0f4ff, #ffffff);
+        }
+        .collapse-icon {
+            transition: transform 0.3s ease;
+            font-size: 1.2rem;
+        }
+        .toggle-btn[aria-expanded="true"] .collapse-icon {
+            transform: rotate(180deg);
+        }
         .section-title { font-size: 1.14rem; font-weight: 500; }
+        .card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
         @media (max-width: 767px) {
             .card { margin-bottom: 1.5rem; }
+            .toggle-btn { padding: 10px 15px; }
         }
     </style>
 </head>
@@ -70,7 +114,7 @@
                             <img src="https://www.dtac.co.th/dtac-library/assets/img/icons/ico-dtac.png" alt="Dtac Logo" style="max-height: 38px; width: auto;" class="me-2">
                             <span class="section-title dtac">Dtac</span>
                         </div>
-                        <button class="btn btn-outline-primary w-100 toggle-btn" type="button" data-bs-toggle="collapse" data-bs-target="#dtacCollapse" aria-expanded="false" aria-controls="dtacCollapse">
+                        <button class="btn btn-outline-primary w-100 toggle-btn dtac-btn" type="button" data-bs-toggle="collapse" data-bs-target="#dtacCollapse" aria-expanded="false" aria-controls="dtacCollapse">
                             Dtac ဆင်းမ်အတွက် ဖတ်ရန်
                             <i class="bi bi-chevron-down collapse-icon"></i>
                         </button>
@@ -102,7 +146,7 @@
                             <img src="https://topping.truemoveh.com/assets/static/images/icon_fb&true@3x.82de9630.png" alt="True Logo" style="max-height: 30px; width: auto;" class="me-2">
                             <span class="section-title true">TrueMove</span>
                         </div>
-                        <button class="btn btn-outline-danger w-100 toggle-btn" type="button" data-bs-toggle="collapse" data-bs-target="#trueCollapse" aria-expanded="false" aria-controls="trueCollapse">
+                        <button class="btn btn-outline-danger w-100 toggle-btn true-btn" type="button" data-bs-toggle="collapse" data-bs-target="#trueCollapse" aria-expanded="false" aria-controls="trueCollapse">
                             TrueMove ဆင်းမ်အတွက် ဖတ်ရန်
                             <i class="bi bi-chevron-down collapse-icon"></i>
                         </button>
@@ -110,7 +154,7 @@
                             <p>TrueMove ဆင်းမ်အတွက် သက်တမ်းတိုးနည်း </p>
                             ကဒ်သက်တမ်း စစ်ရန်
                             <p><b>*123#</b> ကို <button class="btn btn-primary btn-sm" onclick="location.href='tel:*123%23'">စစ်ရန် နှိပ်ပါ</button></p>
-                            <p>အောက်ပါပုံအတိုင်း သက်တမ်းပေါ်လာမည် ဖြစ်ပါတယ်</p>
+                            <p>အောက်ပါပုံအတို�င်း သက်တမ်းပေါ်လာမည် ဖြစ်ပါတယ်</p>
                             <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/true_check_no.jpg" class="img-thumbnail" alt="ပုံ true နံပါတ်စစ်">
                             <p></p>
                             • 30ရက် သက်တမ်းတိုးရန် (2ဘတ် ကုန်မည်)
@@ -132,7 +176,7 @@
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBwSTp4vgOVqME3OlQ30ghtLyl08fqw1xsemUKEdPNm937DFZ4CZlI_Zcn&s=10" alt="Ais Logo" style="max-height: 38px; width: auto;" class="me-2">
                             <span class="section-title ais">AIS</span>
                         </div>
-                        <button class="btn btn-outline-success w-100 toggle-btn" type="button" data-bs-toggle="collapse" data-bs-target="#aisCollapse" aria-expanded="false" aria-controls="aisCollapse">
+                        <button class="btn btn-outline-success w-100 toggle-btn ais-btn" type="button" data-bs-toggle="collapse" data-bs-target="#aisCollapse" aria-expanded="false" aria-controls="aisCollapse">
                             AIS ဆင်းမ်အတွက် ဖတ်ရန်
                             <i class="bi bi-chevron-down collapse-icon"></i>
                         </button>
@@ -153,7 +197,7 @@
             </div>
         </div>
         <footer class="text-center mt-4">
-            <p>&copy; 2024 ဆင်းမ်ကဒ် သက်တမ်းတိုးနည်းများ</p>
+            <p>© 2024 ဆင်းမ်ကဒ် သက်တမ်းတိုးနည်းများ</p>
         </footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
