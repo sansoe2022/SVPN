@@ -1,135 +1,85 @@
 <!DOCTYPE html>
-<html lang="my">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>အင်တာနက်ဖရီး သုံးဖို့ စမတ်နည်းများ</title>
-    <!-- Bootstrap 5 and Icons -->
+    <title>SVPN Online Users</title>
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
-        body { font-family: 'Roboto', Arial, sans-serif; background: #f9faff; }
-        .navbar-brand { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; letter-spacing: 1px; }
-        .card-title { font-size: 1.1rem; }
-        .dtac { color: #007bff; }
-        .true { color: #e60012; }
-        .ais { color: #00b900; }
-        .img-thumbnail { margin-bottom: 8px; }
-        
-        /* Enhanced Toggle Button Styles */
-        .toggle-btn {
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background: linear-gradient(135deg, #e0e7ff 0%, #ffffff 100%);
+            min-height: 100vh;
+        }
+        .navbar-brand {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            font-weight: 500;
-            border-radius: 12px;
-            padding: 12px 18px;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 100%);
+            gap: 0.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
-        
-        .toggle-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        .table-container {
+            width: 95%;
+            max-width: 800px;
+            margin: 32px auto 0 auto;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+            border-radius: 8px;
+            padding: 16px;
         }
-        
-        .toggle-btn:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
         }
-        
-        /* Arrow Icon Styles */
-        .collapse-icon {
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            font-size: 1.2rem;
-            color: inherit;
-            width: 24px;
-            height: 24px;
+        th, td {
+            border: 1px solid #ececec;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .online {
+            color: #00C853; font-weight: bold;
+        }
+        .online-warning {
+            color: #FFD600; font-weight: bold; /* Yellow */
+        }
+        .online-danger {
+            color: #D32F2F; font-weight: bold; /* Red */
+        }
+        .offline {
+            color: #d32f2f; font-weight: bold;
+        }
+        .total-users {
+            text-align: center;
+            margin-top: 16px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .status-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin-right: 6px;
+            vertical-align: middle;
         }
-        
-        .toggle-btn[aria-expanded="true"] .collapse-icon {
-            transform: rotate(180deg);
-            background: rgba(255,255,255,0.3);
-        }
-        
-        /* Different colored buttons */
-        .btn-outline-primary.toggle-btn {
-            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-            color: white;
-            border: none;
-        }
-        
-        .btn-outline-primary.toggle-btn:hover {
-            background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
-            color: white;
-        }
-        
-        .btn-outline-danger.toggle-btn {
-            background: linear-gradient(135deg, #e60012 0%, #b8000e 100%);
-            color: white;
-            border: none;
-        }
-        
-        .btn-outline-danger.toggle-btn:hover {
-            background: linear-gradient(135deg, #b8000e 0%, #8a000a 100%);
-            color: white;
-        }
-        
-        .btn-outline-success.toggle-btn {
-            background: linear-gradient(135deg, #00b900 0%, #008f00 100%);
-            color: white;
-            border: none;
-        }
-        
-        .btn-outline-success.toggle-btn:hover {
-            background: linear-gradient(135deg, #008f00 0%, #006600 100%);
-            color: white;
-        }
-        
-        /* Collapse content animation */
-        .collapse {
-            transition: all 0.3s ease-in-out;
-        }
-        
-        .section-title { font-size: 1.14rem; font-weight: 500; }
-        
-        /* Pulse animation for buttons */
-        @keyframes pulse {
-            0% { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-            50% { box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
-            100% { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        }
-        
-        .toggle-btn:focus {
-            animation: pulse 0.6s ease-in-out;
-        }
-        
-        @media (max-width: 767px) {
-            .card { margin-bottom: 1.5rem; }
-            .toggle-btn {
-                padding: 10px 15px;
-                font-size: 0.9rem;
-            }
-            .collapse-icon {
-                width: 20px;
-                height: 20px;
-                font-size: 1rem;
-            }
+        .dot-green { background: #00C853; }
+        .dot-yellow { background: #FFD600; }
+        .dot-red { background: #D32F2F; }
+        @media (max-width: 600px) {
+            .table-container {padding: 5px;}
+            th, td {font-size: 0.91rem;}
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
+    <!-- Navbar (same as index.html) -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="index.html">
@@ -142,17 +92,17 @@
             <div class="collapse navbar-collapse" id="svpnNavbar">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="guidesim.html">
+                        <a class="nav-link" href="https://sansoe2022.github.io/SVPN/guidesim.html">
                             <i class="bi bi-journal-code me-1"></i> VPN နဲ့ ချိတ်သုံးဖို့ လမ်းညွှန်
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="extendsim.html">
+                        <a class="nav-link" href="https://sansoe2022.github.io/SVPN/extendsim.html">
                             <i class="bi bi-phone me-1"></i> ဆင်းမ်ကဒ် သက်တမ်းတိုးနည်း
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="https://sansoe2022.github.io/SVPN/">
                             <i class="bi bi-house-door me-1"></i> Home
                         </a>
                     </li>
@@ -160,120 +110,106 @@
             </div>
         </div>
     </nav>
-    
-    <div class="container mt-3">
-        <header class="my-4">
-            <h2 class="card-title">အင်တာနက်ဖရီး သုံးဖို့ ဆင်းမ်ကဒ်ဘက်မှာ လိုအပ်သောအရာများ</h2>
-        </header>
-        <div class="row">
-            <!-- Dtac Card -->
-            <div class="col-md-4 dtac-section">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-2">
-                            <img src="https://www.dtac.co.th/dtac-library/assets/img/icons/ico-dtac.png" alt="Dtac Logo" style="max-height: 38px; width: auto;" class="me-2">
-                            <span class="section-title dtac">Dtac</span>
-                        </div>
-                        <p>Dtac ဆင်းမ်ကဒ်သုံးတယ်ဆိုရင် ဒီအောက်က ပက်ကေ့တစ်ခုခုကို စမတ်ပြီးမှ VPN ချိတ်သုံးလို့ရပါတယ် </p>
-                        <button class="btn btn-outline-primary w-100 toggle-btn" type="button" data-bs-toggle="collapse" data-bs-target="#dtacLayout" aria-expanded="false" aria-controls="dtacLayout">
-                            <span>Dtac ဆင်းမ်အတွက် ဖတ်ရန်</span>
-                            <i class="bi bi-chevron-down collapse-icon"></i>
-                        </button>
-                        
-                        <div class="collapse mt-2" id="dtacLayout">
-                            <p>ပထမနည်း - Jaidee 64kbps ပက်ကေ့ - 30ရက် / 30ဘတ်</p>
-                            <p><b>*117*30#</b> <button class="btn btn-primary btn-sm" onclick="location.href='tel:*117*30%23'">စမတ်ရန် နှိပ်ပါ</button></p>
-                            <p>(Jaidee ပက်ကေ့ စမတ်ပြီးရင် Dtac Jaidee ဖိုင်ကို ရွေးပြီး ချိတ်ပါဗျ)</p>
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_jaidee.jpg" class="img-thumbnail" alt="ပုံ (1)">
-                            
-                            <p>ဒုတိယနည်း - Gaming ပက်ကေ့ - 90ရက် / 61ဘတ်</p>
-                            <p>စမတ်နည်းက အောက်ကပုံတွေကို ကြည့်ပြီး လိုက်စမတ်ပါဗျ</p>
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming1.jpg" class="img-thumbnail" alt="ပုံ (1)">
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming2.jpg" class="img-thumbnail" alt="ပuံ (2)">
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming3.jpg" class="img-thumbnail" alt="ပုံ (3)">
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming4.jpg" class="img-thumbnail" alt="ပuံ (4)">
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming5.jpg" class="img-thumbnail" alt="ပuံ (5)">
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming6.jpg" class="img-thumbnail" alt="ပuံ (6)">
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming7.jpg" class="img-thumbnail" alt="ပuံ (7)">
-                            <p class="mt-4">(Gaming ပက်ကေ့ စမတ်ပြီးရင် Dtac Gaming ဖိုင်ကို ရွေးပြီး ချိတ်ပါဗျ)</p>
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/dtac_gaming8.jpg" class="img-thumbnail" alt="ပuံ (8)">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- True Card -->
-            <div class="col-md-4 true-section">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-2">
-                            <img src="https://topping.truemoveh.com/assets/static/images/icon_fb&true@3x.82de9630.png" alt="True Logo" style="max-height: 30px; width: auto;" class="me-2">
-                            <span class="section-title true">True</span>
-                        </div>
-                        <p>True ဆင်းမ်ကဒ်သုံးတယ်ဆိုရင် အောက်က ပက်ကေ့ တစ်ခုခုကို စမတ်ပြီးမှ VPN ချိတ်သုံးလို့ရမှာပါ </p>
-                        <button class="btn btn-outline-danger w-100 toggle-btn" type="button" data-bs-toggle="collapse" data-bs-target="#trueLayout" aria-expanded="false" aria-controls="trueLayout">
-                            <span>TrueMove ဆင်းမ်အတွက် ဖတ်ရန်</span>
-                            <i class="bi bi-chevron-down collapse-icon"></i>
-                        </button>
-                        <div class="collapse mt-2" id="trueLayout">
-                            <p>ပထမနည်း - VDO ပက်ကေ့ 54 ဘတ် / 30 ရက်</p>
-                            <p><b>*900*1347#</b> <button class="btn btn-primary btn-sm" onclick="location.href='tel:*900*1347%23'">စမတ်ရန် နှိပ်ပါ</button></p>
-                            <p>(VDO ပက်ကေ့ စမတ်ပြီးရင် True VDO ဖိုင်ကို ရွေးပြီး ချိတ်ပါဗျ)</p>
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/true_vdo.png" class="img-thumbnail" alt="ပuံ (1)">
-                            <p class="mt-4">ဒုတိယနည်း - Viber ပက်ကေ့</p>
-                            <p>6 ဘတ် / 1 ရက် <br> <b>*900*3912#</b> <button class="btn btn-primary btn-sm" onclick="location.href='tel:*900*3912%23'">စမတ်ရန် နှိပ်ပါ</button></p>
-                            <p>21 ဘတ် / 7 ရက် <br> <b>*900*3913#</b> <button class="btn btn-primary btn-sm" onclick="location.href='tel:*900*3913%23'">စမတ်ရန် နှိပ်ပါ</button></p>
-                            <p>53 ဘတ် / 30 ရက် <br> <b>*900*3809#</b> <button class="btn btn-primary btn-sm" onclick="location.href='tel:*900*3809%23'">စမတ်ရန် နှိပ်ပါ</button></p>
-                            <p>(Viber ပက်ကေ့ စမတ်ပြီးရင် True Viber ဖိုင်ကို ရွေးပြီး ချိတ်ပါဗျ)</p>
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/true_viber.jpg" class="img-thumbnail" alt="ပuံ (1)">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- AIS Card -->
-            <div class="col-md-4 ais-section">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-2">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBwSTp4vgOVqME3OlQ30ghtLyl08fqw1xsemUKEdPNm937DFZ4CZlI_Zcn&s=10" alt="Ais Logo" style="max-height: 38px; width: auto;" class="me-2">
-                            <span class="section-title ais">AIS</span>
-                        </div>
-                        <p>Ais ဆင်းမ် သုံးပါက အောက်က ပက်ကေ့နှစ်ခုလုံး စမတ်ပေးဖို့ လိုအပ်ပါတယ် </p>
-                        <button class="btn btn-outline-success w-100 toggle-btn" type="button" data-bs-toggle="collapse" data-bs-target="#aisLayout" aria-expanded="false" aria-controls="aisLayout">
-                            <span>Ais ဆင်းမ်အတွက် ဖတ်ရန်</span>
-                            <i class="bi bi-chevron-down collapse-icon"></i>
-                        </button>
-                        <div class="collapse mt-2" id="aisLayout">
-                            <p>ပင်မပရိုမိုးရှင်း နှင့် Ais play ပရိုမိုးရှင်း နှစ်ခုလုံး စမတ်ပြီးရင် Ais_Play ဖိုင်ကို ရွေးချိတ်သုံးပါ</p>
-                            <p>ပင်မ ပရိုမိုးရှင်း 64kbps - 32 ဘတ် / 30ရက်</p>
-                            <p><b>*777*7067#</b> <button class="btn btn-success btn-sm" onclick="location.href='tel:*777*7067%23'">စမတ်ရန် နှိပ်ပါ</button></p>
-                            <p>Ais Play ပရိုမိုးရှင်း - 64 ဘတ် / 30 ရက်</p>
-                            <p><b>*777*885#</b> <button class="btn btn-success btn-sm" onclick="location.href='tel:*777*885%23'">စမတ်ရန် နှိပ်ပါ</button></p>
-                            <p class="true">မှတ်ချက်။ ပရိုမိုးရှင်း နှစ်ခုလုံး စမတ်ပြီးမှ သုံးလို့ရပါတယ်ခင်ဗျာ</p>
-                            <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/ais_play.png" class="img-thumbnail" alt="ပuံ (1)">
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <h3 class="mt-4 text-center">SVPN Server Status</h3>
+    <div class="table-container">
+        <table id="servers-table">
+            <thead>
+                <tr>
+                    <th>Server Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be inserted by JavaScript -->
+            </tbody>
+        </table>
+        <div class='total-users' id="total-users">
+            <!-- Total online users will be inserted by JavaScript -->
         </div>
-        <!-- SVPN Download Card -->
-        <div class="row justify-content-center">
-            <div class="col-md-4 ais-section">
-                <div class="card mb-4">
-                    <div class="card-body text-center">
-                        <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/icon.png" alt="SVPN Logo" style="max-height: 50px; width: auto;">
-                        <p class="mt-2 mb-3">SVPN မရှိသေးရင် ဒေါင်းရန်</p>
-                        <a class="btn btn-outline-primary" href="https://play.google.com/store/apps/details?id=com.svpnmm.mmdev" target="_blank">
-                            SVPN ဒေါင်းရန် နှိပ်ပါ
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <footer class="text-center mt-4">
-            <p>© 2025 အင်တာနက်ဖရီး ပရိုမိုးရှင်းများ</p>
-        </footer>
     </div>
-    <!-- Bootstrap JS Bundle -->
+    <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    // Server endpoints
+    const servers = {
+        '🇹🇭 FREE 1': 'http://tmvh.co.free1.sksfree.shop:81/server/online',
+        '🇹🇭 FREE 2': 'http://tmvh.co.free6.sksfree.shop:81/server/online',
+        '🇹🇭 FREE 3': 'http://tmvh.co.free1new.sksfree.shop:81/server/online',
+        '🇹🇭 FREE 4': 'http://tmvh.co.free4.sksfree.shop:81/server/online',
+        '🇹🇭 FREE 5': 'http://tmvh.co.free5.sksfree.shop:81/server/online',
+        '🇹🇭 FREE 6': 'http://tmvh.co.free2.sksfree.shop:81/server/online',
+        '🇹🇭 FREE 7': 'http://tmvh.co.free3.sksfree.shop:81/server/online',
+        '🇹🇭 FREE 8': 'http://tmvh.co.free8.sksfree.shop:81/server/online',
+        '🇹🇭 FREE 9': 'http://tmvh.co.free9.sksfree.shop:81/server/online',
+        '🇹🇭 FREE 10': 'http://tmvh.co.free10.sksfree.shop:81/server/online'
+    };
+
+    // Helper for status rendering
+    function getStatusInfo(onlineCount) {
+        if (onlineCount > 400) {
+            return { class: "online-danger", dot: "dot-red", label: "High Load" };
+        } else if (onlineCount > 300) {
+            return { class: "online-warning", dot: "dot-yellow", label: "Busy" };
+        } else {
+            return { class: "online", dot: "dot-green", label: "Normal" };
+        }
+    }
+
+    async function fetchServerStatus() {
+        const tableBody = document.querySelector('#servers-table tbody');
+        tableBody.innerHTML = '';
+        let totalOnlineCount = 0;
+        let requests = Object.entries(servers).map(async ([name, url]) => {
+            try {
+                const resp = await fetch(url, {cache: "no-store"});
+                if (!resp.ok) throw new Error();
+                const text = await resp.text();
+                const onlineCount = parseInt(text.trim());
+                if (!isNaN(onlineCount)) {
+                    totalOnlineCount += onlineCount;
+                    const {class: statusClass, dot: dotClass, label} = getStatusInfo(onlineCount);
+                    tableBody.innerHTML += `
+                        <tr>
+                            <td>${name}</td>
+                            <td class="${statusClass}">
+                                <span class="status-dot ${dotClass}"></span>
+                                Online ${onlineCount} people
+                                <span class='badge rounded-pill ms-2 ${statusClass}' style='background: transparent; border: 1px solid #ececec; font-size: 0.85em;'>${label}</span>
+                            </td>
+                        </tr>
+                    `;
+                } else {
+                    throw new Error();
+                }
+            } catch {
+                tableBody.innerHTML += `
+                    <tr>
+                        <td>${name}</td>
+                        <td class="offline">
+                            <span class="status-dot dot-red"></span>
+                            Unable to connect
+                        </td>
+                    </tr>
+                `;
+            }
+        });
+        await Promise.all(requests);
+
+        // Total users color logic
+        let totalClass, dotClass;
+        if (totalOnlineCount > 400 * Object.keys(servers).length) {
+            totalClass = "online-danger"; dotClass = "dot-red";
+        } else if (totalOnlineCount > 300 * Object.keys(servers).length) {
+            totalClass = "online-warning"; dotClass = "dot-yellow";
+        } else {
+            totalClass = "online"; dotClass = "dot-green";
+        }
+        document.getElementById('total-users').innerHTML =
+            `Total online users: <span class="${totalClass}"><span class="status-dot ${dotClass}"></span>${totalOnlineCount}</span> people`;
+    }
+
+    // Run on page load
+    fetchServerStatus();
+    </script>
 </body>
 </html>
