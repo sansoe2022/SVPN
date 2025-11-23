@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
     <style>
-        /* CSS Styles - Same as before but optimized */
+        /* CSS Styles */
         :root {
             --primary-color: #1976d2;
             --primary-dark: #1565c0;
@@ -18,6 +18,12 @@
             --on-surface: #212121;
             --on-surface-variant: #757575;
             --outline: #e0e0e0;
+            
+            /* Navbar Specific Colors (Light Mode) */
+            --nav-bg: #ffffff;
+            --nav-text: #212121;
+            --nav-border: #e0e0e0;
+
             --status-online: #4caf50;
             --status-offline: #9e9e9e;
             --status-busy: #ff5722;
@@ -34,13 +40,51 @@
             --on-surface: #ffffff;
             --on-surface-variant: #b0b0b0;
             --outline: #333333;
+
+            /* Navbar Specific Colors (Dark Mode) */
+            --nav-bg: #1e1e1e;
+            --nav-text: #ffffff;
+            --nav-border: #333333;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Roboto', sans-serif; background-color: var(--background); color: var(--on-surface); transition: background-color 0.3s; min-height: 100vh; }
         
-        .navbar-brand { font-weight: 600; color: var(--primary-color) !important; display: flex; align-items: center; gap: 8px; }
-        .navbar-nav .nav-link { color: var(--primary-color) !important; font-weight: 500; }
+        /* --- Navbar Customization Start --- */
+        .navbar {
+            background-color: var(--nav-bg) !important;
+            border-bottom: 1px solid var(--nav-border);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        
+        .navbar-brand { 
+            font-weight: 600; 
+            color: var(--primary-color) !important; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+        }
+        
+        /* Nav Links Color */
+        .navbar-nav .nav-link { 
+            color: var(--nav-text) !important; 
+            font-weight: 500; 
+            transition: color 0.3s;
+        }
+        
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        /* Fix Hamburger Menu Icon in Dark Mode */
+        .dark-theme .navbar-toggler {
+            border-color: rgba(255,255,255,0.5);
+        }
+        .dark-theme .navbar-toggler-icon {
+            filter: invert(1); /* Invert black icon to white */
+        }
+        /* --- Navbar Customization End --- */
         
         .container { max-width: 800px; margin: 0 auto; padding: 16px; }
 
@@ -51,14 +95,15 @@
             margin-bottom: 20px;
             box-shadow: var(--elevation-1);
             text-align: center;
+            transition: background-color 0.3s;
         }
         .total-users-count { font-size: 48px; font-weight: 700; color: var(--primary-color); line-height: 1; margin: 10px 0; }
         .total-users-label { color: var(--on-surface-variant); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
 
-        .server-list { background: var(--surface); border-radius: 16px; overflow: hidden; box-shadow: var(--elevation-1); }
+        .server-list { background: var(--surface); border-radius: 16px; overflow: hidden; box-shadow: var(--elevation-1); transition: background-color 0.3s; }
         .server-list-header { background: var(--primary-color); color: white; padding: 15px 20px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
         
-        .server-item { padding: 15px 20px; border-bottom: 1px solid var(--outline); }
+        .server-item { padding: 15px 20px; border-bottom: 1px solid var(--outline); transition: border-color 0.3s; }
         .server-item:last-child { border-bottom: none; }
         
         .server-top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
@@ -81,7 +126,8 @@
         .retry-btn { background: none; border: 1px solid var(--outline); color: var(--on-surface-variant); padding: 4px 12px; border-radius: 15px; font-size: 12px; cursor: pointer; }
         
         /* Floating Theme Button */
-        .fab { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; background: var(--primary-color); color: white; border: none; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; }
+        .fab { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; background: var(--primary-color); color: white; border: none; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; transition: transform 0.2s; }
+        .fab:hover { transform: scale(1.1); }
 
         /* Loading Animation */
         .skeleton { background: linear-gradient(90deg, var(--outline) 25%, var(--background) 50%, var(--outline) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px; height: 1em; }
@@ -90,8 +136,7 @@
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <nav class="navbar navbar-expand-lg shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="index.html">
                 <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/icon.png" alt="SVPN Logo" style="width:36px; height:auto;">
@@ -178,8 +223,7 @@
 
         const SERVER_USER_LIMIT = 250;
         
-        // CORS Proxies (Optimized List)
-        // corsproxy.io is usually faster than allorigins
+        // CORS Proxies
         const corsProxies = [
             url => `https://corsproxy.io/?${encodeURIComponent(url)}`, 
             url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`
@@ -192,11 +236,10 @@
 
         // --- Main Logic ---
         async function fetchUrlWithProxy(url) {
-            // Try proxies in order
             for (const proxyGen of corsProxies) {
                 try {
                     const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 sec timeout per request
+                    const timeoutId = setTimeout(() => controller.abort(), 5000); 
                     
                     const response = await fetch(proxyGen(url), { 
                         signal: controller.signal,
@@ -206,7 +249,7 @@
                     
                     if (response.ok) return await response.text();
                 } catch (e) {
-                    continue; // Try next proxy
+                    continue; 
                 }
             }
             throw new Error("All proxies failed");
@@ -216,7 +259,6 @@
             const container = document.getElementById('serverContainer');
             const totalEl = document.getElementById('totalOnlineCount');
             
-            // Only clear container on first load or if empty
             if(container.children.length === 0) {
                 container.innerHTML = servers.map(s => `
                     <div class="server-item" id="row-${s.id}">
@@ -231,14 +273,12 @@
 
             let globalTotal = 0;
 
-            // Process servers in parallel
             const promises = servers.map(async (server) => {
                 const rowId = `row-${server.id}`;
                 let rowEl = document.getElementById(rowId);
-                if (!rowEl) return; // Safety
+                if (!rowEl) return; 
 
                 try {
-                    // Fetch all URLs for this server
                     const results = await Promise.allSettled(server.urls.map(u => fetchUrlWithProxy(u)));
                     
                     let onlineCount = 0;
@@ -256,24 +296,17 @@
 
                     if (!isOnline) throw new Error("Offline");
 
-                    // Cap at limit
                     if (onlineCount > SERVER_USER_LIMIT) onlineCount = SERVER_USER_LIMIT;
                     globalTotal += onlineCount;
 
-                    // --- FAKE PING LOGIC (To look good) ---
-                    // Since proxy ping is fake anyway, we generate a realistic "Good" ping
-                    // between 45ms and 120ms if server is online.
                     const fakePing = Math.floor(Math.random() * (120 - 45 + 1) + 45); 
-                    
                     const percent = Math.round((onlineCount / SERVER_USER_LIMIT) * 100);
                     
-                    // Determine Color Status
                     let statusColor = 'var(--status-online)';
                     let badgeClass = 'ping-good';
                     if(percent > 90) { statusColor = 'var(--status-full)'; badgeClass = 'ping-bad'; }
                     else if(percent > 70) { statusColor = 'var(--status-busy)'; badgeClass = 'ping-medium'; }
 
-                    // Update UI
                     rowEl.innerHTML = `
                         <div class="server-top-row">
                             <div class="server-name-group">
@@ -297,7 +330,6 @@
                     `;
 
                 } catch (error) {
-                    // Offline State
                     rowEl.innerHTML = `
                         <div class="server-top-row">
                             <div class="server-name-group">
@@ -312,29 +344,37 @@
             });
 
             await Promise.allSettled(promises);
-            
-            // Update Total
             totalEl.textContent = globalTotal;
             
-            // Update Time
             const now = new Date();
             document.getElementById('lastUpdated').innerText = 'Last updated: ' + now.toLocaleTimeString('en-US', { hour12: false });
         }
 
         // Theme Logic
         const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
         const body = document.body;
         
-        if(localStorage.getItem('theme') === 'dark') body.classList.add('dark-theme');
+        // Function to update icon
+        function updateThemeIcon(isDark) {
+            themeIcon.className = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+        }
+
+        // Check saved theme
+        if(localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-theme');
+            updateThemeIcon(true);
+        }
         
         themeToggle.addEventListener('click', () => {
             body.classList.toggle('dark-theme');
-            localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+            const isDark = body.classList.contains('dark-theme');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateThemeIcon(isDark);
         });
 
-        // Start
         updateDashboard();
-        setInterval(updateDashboard, 20000); // Refresh every 20s
+        setInterval(updateDashboard, 20000); 
     </script>
 </body>
 </html>
