@@ -370,7 +370,6 @@
     </style>
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="index.html">
@@ -420,7 +419,6 @@
                 Server Status List
             </div>
             <div id="serverContainer">
-                <!-- Loading state -->
                 <div class="server-item">
                     <div class="loading-skeleton"></div>
                     <div class="loading-skeleton" style="width: 60%; margin-top: 12px;"></div>
@@ -440,11 +438,32 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Server configuration
+        // --- [ပြင်ဆင်ချက်] URLs Array ပုံစံပြောင်းထားသည် ---
         const servers = [
-            { id: 'th-01', name: 'Thailand-01', url: 'http://free1svpn.sksvpn.shop:81/server/online' },
-            { id: 'th-02', name: 'Thailand-02', url: 'http://free2svpn.sksvpn.shop:81/server/online' },
-            { id: 'th-03', name: 'Thailand-03', url: 'http://free3svpn.sksvpn.shop:81/server/online' }
+            { 
+                id: 'th-01', 
+                name: 'Thailand-01', 
+                urls: [
+                    'http://free1svpn.sksvpn.shop:81/server/online',
+                    'http://free1svpn.sksvpn.shop:81/udpserver/online'
+                ] 
+            },
+            { 
+                id: 'th-02', 
+                name: 'Thailand-02', 
+                urls: [
+                    'http://free2svpn.sksvpn.shop:81/server/online',
+                    'http://free2svpn.sksvpn.shop:81/udpserver/online'
+                ] 
+            },
+            { 
+                id: 'th-03', 
+                name: 'Thailand-03', 
+                urls: [
+                    'http://free3svpn.sksvpn.shop:81/server/online',
+                    'http://free3svpn.sksvpn.shop:81/udpserver/online'
+                ] 
+            }
         ];
 
         const SERVER_USER_LIMIT = 250;
@@ -527,12 +546,12 @@
 
             let totalOnlineCount = 0;
 
-            // Clear container
             container.innerHTML = '';
 
             const serverPromises = servers.map(async (server) => {
                 const serverElement = document.createElement('div');
                 serverElement.className = 'server-item';
+                // Initial Loading UI
                 serverElement.innerHTML = `
                     <div class="server-header">
                         <div class="server-name">
@@ -556,46 +575,55 @@
 
                 try {
                     const startTime = Date.now();
-                    const response = await fetchWithCorsProxy(server.url);
-                    const responseText = await response.text();
-                    let onlineCount = parseInt(responseText, 10);
                     
-                    if (onlineCount > SERVER_USER_LIMIT) {
-                        onlineCount = SERVER_USER_LIMIT;
+                    // --- [ပြင်ဆင်ချက်] Loop through all URLs and Sum them up ---
+                    const urlPromises = server.urls.map(url => fetchWithCorsProxy(url));
+                    const responses = await Promise.all(urlPromises);
+                    
+                    let combinedOnlineCount = 0;
+                    
+                    for (const response of responses) {
+                        const responseText = await response.text();
+                        const count = parseInt(responseText, 10);
+                        if (!isNaN(count)) {
+                            combinedOnlineCount += count;
+                        }
+                    }
+
+                    if (combinedOnlineCount > SERVER_USER_LIMIT) {
+                        combinedOnlineCount = SERVER_USER_LIMIT;
                     }
                     
                     const pingTime = Date.now() - startTime;
 
-                    if (!isNaN(onlineCount)) {
-                        totalOnlineCount += onlineCount;
+                    totalOnlineCount += combinedOnlineCount;
 
-                        const statusInfo = getServerStatus(onlineCount);
-                        const pingClass = getPingClass(pingTime);
-                        const percentage = Math.min(100, Math.round((onlineCount / SERVER_USER_LIMIT) * 100));
-                        const progressBarClass = getProgressBarClass(percentage);
+                    const statusInfo = getServerStatus(combinedOnlineCount);
+                    const pingClass = getPingClass(pingTime);
+                    const percentage = Math.min(100, Math.round((combinedOnlineCount / SERVER_USER_LIMIT) * 100));
+                    const progressBarClass = getProgressBarClass(percentage);
 
-                        serverElement.innerHTML = `
-                            <div class="server-header">
-                                <div class="server-name">
-                                    <div class="status-indicator ${statusInfo.class}"></div>
-                                    <img src="${getFlagImage(getCountryCode(server.id))}" alt="Flag" class="flag" onerror="this.style.display='none'">
-                                    <span>${server.name}</span>
-                                </div>
-                                <div class="ping-badge ${pingClass}">${pingTime}ms</div>
+                    serverElement.innerHTML = `
+                        <div class="server-header">
+                            <div class="server-name">
+                                <div class="status-indicator ${statusInfo.class}"></div>
+                                <img src="${getFlagImage(getCountryCode(server.id))}" alt="Flag" class="flag" onerror="this.style.display='none'">
+                                <span>${server.name}</span>
                             </div>
-                            <div class="server-details">
-                                <div class="usage-info">
-                                    <div class="usage-text">${onlineCount}/${SERVER_USER_LIMIT} users (${percentage}%)</div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill ${progressBarClass}" style="width: ${percentage}%"></div>
-                                    </div>
+                            <div class="ping-badge ${pingClass}">${pingTime}ms</div>
+                        </div>
+                        <div class="server-details">
+                            <div class="usage-info">
+                                <div class="usage-text">${combinedOnlineCount}/${SERVER_USER_LIMIT} users (${percentage}%)</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill ${progressBarClass}" style="width: ${percentage}%"></div>
                                 </div>
                             </div>
-                        `;
-                    } else {
-                        throw new Error('Invalid response');
-                    }
+                        </div>
+                    `;
+
                 } catch (error) {
+                    // console.error(error); // Debug if needed
                     serverElement.innerHTML = `
                         <div class="server-header">
                             <div class="server-name">
@@ -618,10 +646,8 @@
 
             await Promise.allSettled(serverPromises);
 
-            // Update statistics
             totalOnlineCountElement.textContent = totalOnlineCount;
 
-            // Update timestamp (Bangkok timezone)
             const now = new Date();
             const options = {
                 timeZone: 'Asia/Bangkok',
@@ -669,43 +695,47 @@
 
             try {
                 const startTime = Date.now();
-                const response = await fetchWithCorsProxy(server.url);
-                const responseText = await response.text();
-                let onlineCount = parseInt(responseText, 10);
                 
-                if (onlineCount > SERVER_USER_LIMIT) {
-                    onlineCount = SERVER_USER_LIMIT;
+                // Retry logic for multiple URLs
+                const urlPromises = server.urls.map(url => fetchWithCorsProxy(url));
+                const responses = await Promise.all(urlPromises);
+                
+                let combinedOnlineCount = 0;
+                for (const response of responses) {
+                    const responseText = await response.text();
+                    const count = parseInt(responseText, 10);
+                    if (!isNaN(count)) combinedOnlineCount += count;
+                }
+                
+                if (combinedOnlineCount > SERVER_USER_LIMIT) {
+                    combinedOnlineCount = SERVER_USER_LIMIT;
                 }
                 
                 const pingTime = Date.now() - startTime;
 
-                if (!isNaN(onlineCount)) {
-                    const statusInfo = getServerStatus(onlineCount);
-                    const pingClass = getPingClass(pingTime);
-                    const percentage = Math.min(100, Math.round((onlineCount / SERVER_USER_LIMIT) * 100));
-                    const progressBarClass = getProgressBarClass(percentage);
+                const statusInfo = getServerStatus(combinedOnlineCount);
+                const pingClass = getPingClass(pingTime);
+                const percentage = Math.min(100, Math.round((combinedOnlineCount / SERVER_USER_LIMIT) * 100));
+                const progressBarClass = getProgressBarClass(percentage);
 
-                    serverElement.innerHTML = `
-                        <div class="server-header">
-                            <div class="server-name">
-                                <div class="status-indicator ${statusInfo.class}"></div>
-                                <img src="${getFlagImage(getCountryCode(server.id))}" alt="Flag" class="flag" onerror="this.style.display='none'">
-                                <span>${server.name}</span>
-                            </div>
-                            <div class="ping-badge ${pingClass}">${pingTime}ms</div>
+                serverElement.innerHTML = `
+                    <div class="server-header">
+                        <div class="server-name">
+                            <div class="status-indicator ${statusInfo.class}"></div>
+                            <img src="${getFlagImage(getCountryCode(server.id))}" alt="Flag" class="flag" onerror="this.style.display='none'">
+                            <span>${server.name}</span>
                         </div>
-                        <div class="server-details">
-                            <div class="usage-info">
-                                <div class="usage-text">${onlineCount}/${SERVER_USER_LIMIT} users (${percentage}%)</div>
-                                <div class="progress-bar">
-                                    <div class="progress-fill ${progressBarClass}" style="width: ${percentage}%"></div>
-                                </div>
+                        <div class="ping-badge ${pingClass}">${pingTime}ms</div>
+                    </div>
+                    <div class="server-details">
+                        <div class="usage-info">
+                            <div class="usage-text">${combinedOnlineCount}/${SERVER_USER_LIMIT} users (${percentage}%)</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill ${progressBarClass}" style="width: ${percentage}%"></div>
                             </div>
                         </div>
-                    `;
-                } else {
-                    throw new Error('Invalid response');
-                }
+                    </div>
+                `;
             } catch (error) {
                 serverElement.innerHTML = `
                     <div class="server-header">
@@ -748,15 +778,12 @@
             button.innerHTML = `<span class="material-icons">${isDark ? 'light_mode' : 'dark_mode'}</span>`;
         }
 
-        // Event listeners
         document.getElementById('themeToggle').addEventListener('click', toggleTheme);
 
-        // Initialize
         initTheme();
         updateServerStatus();
 
-        // Auto-refresh
-        setInterval(updateServerStatus, 30000); // Refresh every 30 seconds
+        setInterval(updateServerStatus, 30000); 
     </script>
 </body>
 </html>
