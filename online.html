@@ -3,211 +3,379 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SVPN Online Users</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Server Status Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         :root {
-            /* Light Mode Colors (Deep) */
-            --bg-color-light: linear-gradient(135deg, #e0e7ff 0%, #ffffff 100%);
-            --nav-bg-light: #ffffff;
-            --table-bg-light: #ffffff;
-            --text-color-light: #212529;
-            --border-color-light: #ececec;
-            --th-bg-light: #f2f2f2;
-            
-            --color-green-light: #198754;  /* Deep but clear Green */
-            --color-yellow-light: #FFA000; /* Deep Yellow (Amber) */
-            --color-red-light: #B71C1C;    /* Deep Red */
-            --color-grey-light: #888888;
-            --color-offline-light: #B71C1C;
+            --primary-color: #1976d2;
+            --primary-dark: #1565c0;
+            --secondary-color: #03dac6;
+            --background: #fafafa;
+            --surface: #ffffff;
+            --on-surface: #212121;
+            --on-surface-variant: #757575;
+            --outline: #e0e0e0;
+            --shadow: rgba(0, 0, 0, 0.12);
+            --status-online: #4caf50;
+            --status-offline: #9e9e9e;
+            --status-busy: #ff5722;
+            --status-full: #9c27b0;
+            --ping-good: #4caf50;
+            --ping-medium: #ff9800;
+            --ping-bad: #f44336;
+            --elevation-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            --elevation-2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            --elevation-3: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        }
 
-            /* Dark Mode Colors */
-            --bg-color-dark: linear-gradient(135deg, #0a192f 0%, #172a45 100%);
-            --nav-bg-dark: #0a192f;
-            --table-bg-dark: #172a45;
-            --text-color-dark: #ccd6f6;
-            --border-color-dark: #303c55;
-            --th-bg-dark: #0a192f;
+        .dark-theme {
+            --background: #121212;
+            --surface: #1e1e1e;
+            --on-surface: #ffffff;
+            --on-surface-variant: #b0b0b0;
+            --outline: #333333;
+            --shadow: rgba(0, 0, 0, 0.5);
+        }
 
-            --color-green-dark: #00C853;  /* Bright Green */
-            --color-yellow-dark: #FFD600; /* Bright Yellow */
-            --color-red-dark: #F44336;    /* Bright Red */
-            --color-grey-dark: #999999;
-            --color-offline-dark: #F44336;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Roboto', Arial, sans-serif;
-            background: var(--bg-color-light);
-            color: var(--text-color-light);
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background);
+            color: var(--on-surface);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             min-height: 100vh;
-            transition: background 0.3s, color 0.3s;
-        }
-        body.dark-mode {
-            background: var(--bg-color-dark);
-            color: var(--text-color-dark);
         }
 
-        .navbar {
-            background-color: var(--nav-bg-light) !important;
-            transition: background-color 0.3s;
-        }
-        body.dark-mode .navbar {
-            background-color: var(--nav-bg-dark) !important;
-        }
-        .navbar .nav-link, .navbar .navbar-brand {
-            color: var(--text-color-light) !important;
-        }
-        body.dark-mode .navbar .nav-link, 
-        body.dark-mode .navbar .navbar-brand {
-            color: var(--text-color-dark) !important;
-        }
-
-        body.dark-mode .navbar-toggler {
-            border-color: var(--border-color-dark);
-        }
-        body.dark-mode .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.55)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-        }
-        
-        .theme-switch-wrapper {
+        .navbar-brand {
+            font-weight: 600;
+            color: var(--primary-color) !important;
             display: flex;
             align-items: center;
+            gap: 8px;
         }
-        .theme-switch {
-            display: inline-block;
-            height: 24px;
-            position: relative;
-            width: 50px;
-            margin: 0 10px;
+
+        .navbar-nav .nav-link {
+            color: var(--primary-color) !important;
+            font-weight: 500;
+            transition: color 0.2s;
         }
-        .theme-switch input { display:none; }
-        .slider {
-            background-color: #ccc;
-            bottom: 0;
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            max-width: 400px;
+            margin: 0 auto;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: var(--elevation-1);
+            transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stat-card:hover {
+            box-shadow: var(--elevation-2);
+        }
+
+        .stat-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--on-surface-variant);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 4px;
+        }
+
+        .stat-subtitle {
+            font-size: 12px;
+            color: var(--on-surface-variant);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .server-list {
+            background: var(--surface);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--elevation-1);
+        }
+
+        .server-list-header {
+            padding: 20px 24px;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 500;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .server-item {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--outline);
+            transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            transition: .4s;
-        }
-        .slider:before {
-            background-color: #fff;
-            bottom: 4px;
-            content: "";
-            height: 16px;
-            left: 4px;
-            position: absolute;
-            transition: .4s;
-            width: 16px;
-        }
-        input:checked + .slider {
-            background-color: #66bb6a;
-        }
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-        .slider.round { border-radius: 34px; }
-        .slider.round:before { border-radius: 50%; }
-
-        .table-container {
-            width: 95%;
-            max-width: 800px;
-            margin: 32px auto 0 auto;
-            background: var(--table-bg-light);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.08);
-            border-radius: 8px;
-            padding: 16px;
-            transition: background 0.3s;
-        }
-        body.dark-mode .table-container {
-            background: var(--table-bg-dark);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--table-bg-light);
-            transition: background 0.3s;
-        }
-        body.dark-mode table {
-            background: var(--table-bg-dark);
+        .server-item:hover {
+            background-color: rgba(0, 0, 0, 0.04);
         }
 
-        th, td {
-            border: 1px solid var(--border-color-light);
-            padding: 10px;
-            text-align: left;
-            min-height: 50px; 
-            transition: border-color 0.3s;
-        }
-        body.dark-mode th, body.dark-mode td {
-            border: 1px solid var(--border-color-dark);
+        .dark-theme .server-item:hover {
+            background-color: rgba(255, 255, 255, 0.08);
         }
 
-        th {
-            background-color: var(--th-bg-light);
-            transition: background-color 0.3s;
-        }
-        body.dark-mode th {
-            background-color: var(--th-bg-dark);
+        .server-item:last-child {
+            border-bottom: none;
         }
 
-        /* Status Colors */
-        .online { color: var(--color-green-light); font-weight: bold; }
-        .online-warning { color: var(--color-yellow-light); font-weight: bold; }
-        .online-danger { color: var(--color-red-light); font-weight: bold; }
-        .offline { color: var(--color-offline-light); font-weight: bold; }
-        .loading { color: var(--color-grey-light); font-style: italic; }
-
-        .dot-green { background: var(--color-green-light); }
-        .dot-yellow { background: var(--color-yellow-light); }
-        .dot-red { background: var(--color-red-light); }
-        .dot-grey { background: var(--color-grey-light); }
-
-        /* Dark Mode Status Colors */
-        body.dark-mode .online { color: var(--color-green-dark); }
-        body.dark-mode .online-warning { color: var(--color-yellow-dark); }
-        body.dark-mode .online-danger { color: var(--color-red-dark); }
-        body.dark-mode .offline { color: var(--color-offline-dark); }
-        body.dark-mode .loading { color: var(--color-grey-dark); }
-
-        body.dark-mode .dot-green { background: var(--color-green-dark); }
-        body.dark-mode .dot-yellow { background: var(--color-yellow-dark); }
-        body.dark-mode .dot-red { background: var(--color-red-dark); }
-        body.dark-mode .dot-grey { background: var(--color-grey-dark); }
-
-        .total-users {
-            text-align: center;
-            margin-top: 16px;
-            margin-bottom: 20px;
-            font-weight: bold;
-            font-size: 1.1rem;
+        .server-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
         }
-        .status-dot {
-            display: inline-block;
+
+        .server-name {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .status-indicator {
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            margin-right: 6px;
-            vertical-align: middle;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 0 2px rgba(255,255,255,0.3);
         }
 
-        @media (max-width: 600px) {
-            .table-container {padding: 5px;}
-            th, td {font-size: 0.91rem;}
+        .status-online { background-color: var(--status-online); }
+        .status-offline { background-color: var(--status-offline); }
+        .status-busy { background-color: var(--status-busy); }
+        .status-full { background-color: var(--status-full); }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .ping-badge {
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+            color: white;
+        }
+
+        .ping-good { background-color: var(--ping-good); }
+        .ping-medium { background-color: var(--ping-medium); }
+        .ping-bad { background-color: var(--ping-bad); }
+
+        .server-details {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .usage-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .usage-text {
+            font-size: 14px;
+            color: var(--on-surface-variant);
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background-color: var(--outline);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-low { background: linear-gradient(90deg, var(--status-online), #66bb6a); }
+        .progress-medium { background: linear-gradient(90deg, var(--ping-medium), #ffb74d); }
+        .progress-high { background: linear-gradient(90deg, var(--ping-bad), #ef5350); }
+        .progress-full { background: linear-gradient(90deg, var(--status-full), #ab47bc); }
+
+        .flag {
+            width: 24px;
+            height: 16px;
+            border-radius: 2px;
+            object-fit: cover;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .retry-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .retry-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .fab {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: var(--elevation-3);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+
+        .fab:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        .last-update {
+            text-align: center;
+            color: var(--on-surface-variant);
+            font-size: 12px;
+            margin-top: 16px;
+            padding: 12px;
+        }
+
+        .loading-skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 4px;
+            height: 16px;
+            margin: 8px 0;
+        }
+
+        .dark-theme .loading-skeleton {
+            background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+            background-size: 200% 100%;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .error-state {
+            color: var(--ping-bad);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+
+            .server-item {
+                padding: 16px;
+            }
+
+            .server-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .server-details {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .fab {
+                bottom: 16px;
+                right: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 12px;
+            }
+
+            .stat-card {
+                padding: 16px;
+            }
+
+            .server-item {
+                padding: 12px;
+            }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/pnt_icon510.png" alt="SVPN Logo" style="width:36px; height:auto;">
-                PNT VPN
+                <img src="https://raw.githubusercontent.com/sansoe2022/image_store/refs/heads/main/icon.png" alt="SVPN Logo" style="width:36px; height:auto;">
+                SVPN
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#svpnNavbar" aria-controls="svpnNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -215,311 +383,380 @@
             <div class="collapse navbar-collapse" id="svpnNavbar">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="https://pntvpn.netlify.app/guidesim">
+                        <a class="nav-link active" href="guidesim.html">
                             <i class="bi bi-journal-code me-1"></i> VPN နဲ့ ချိတ်သုံးဖို့ လမ်းညွှန်
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://pntvpn.netlify.app/extendsim">
+                        <a class="nav-link" href="extendsim.html">
                             <i class="bi bi-phone me-1"></i> ဆင်းမ်ကဒ် သက်တမ်းတိုးနည်း
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://pntvpn.netlify.app/">
+                        <a class="nav-link" href="index.html">
                             <i class="bi bi-house-door me-1"></i> Home
                         </a>
                     </li>
-                    <li class="nav-item ms-lg-3 d-flex align-items-center">
-                        <div class="theme-switch-wrapper">
-                            <i class="bi bi-sun-fill"></i>
-                            <label class="theme-switch mx-2">
-                                <input type="checkbox" id="theme-toggle">
-                                <span class="slider round"></span>
-                            </label>
-                            <i class="bi bi-moon-fill"></i>
-                        </div>
-                    </li>
-                    </ul>
+                </ul>
             </div>
         </div>
     </nav>
-    
-    <h3 class="mt-4 text-center">PNT VPN Server Status</h3>
-    
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Server Name</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody id="server-list-body">
-                </tbody>
-        </table>
-        
-        <div class='total-users'>Total online users: 
-            <span id="total-users-display" class="loading">
-                <span class='status-dot dot-grey'></span>Loading...
-            </span>
+
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-title">Total Online Users</div>
+                <div class="stat-value" id="totalOnlineCount">0</div>
+                <div class="stat-subtitle">
+                    <span class="material-icons" style="font-size: 16px;">people</span>
+                    Active connections
+                </div>
+            </div>
+        </div>
+
+        <div class="server-list">
+            <div class="server-list-header">
+                <span class="material-icons">list</span>
+                Server Status List
+            </div>
+            <div id="serverContainer">
+                <!-- Loading state -->
+                <div class="server-item">
+                    <div class="loading-skeleton"></div>
+                    <div class="loading-skeleton" style="width: 60%; margin-top: 12px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="last-update" id="lastUpdated">
+            <span class="material-icons" style="font-size: 16px; vertical-align: middle;">update</span>
+            Last updated: --
         </div>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
+
+    <button class="fab" id="themeToggle">
+        <span class="material-icons">dark_mode</span>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Server list
-        const servers = {
-            '🇯🇵 JP 1': [
-                'http://jp1.sksvpn.shop:81/server/online',
-                'http://jp1.sksvpn.shop:81/udpserver/online'
-            ],
-            '🇹🇭 Free 1': [
-                'http://free1nov.sksvpn.shop:81/server/online',
-                'http://free1nov.sksvpn.shop:81/udpserver/online'
-            ],
-            '🇹🇭 Free 2': [
-                'http://free2nov.sksvpn.shop:81/server/online',
-                'http://free2nov.sksvpn.shop:81/udpserver/online'
-            ],
-            '🇹🇭 Free 3': [
-                'http://free3nov.sksvpn.shop:81/server/online',
-                'http://free3nov.sksvpn.shop:81/udpserver/online'
-            ],
-            '🇹🇭 Free 4': [
-                'http://free4nov.sksvpn.shop:81/server/online',
-                'http://free4nov.sksvpn.shop:81/udpserver/online'
-            ],
-            '🇹🇭 Free 5': [
-                'http://free5nov.sksvpn.shop:81/server/online',
-                'http://free5nov.sksvpn.shop:81/udpserver/online'
-            ],
-            '🇹🇭 Free 6': [
-                'http://free6.sksvpn.shop:81/server/online',
-                'http://free6.sksvpn.shop/udpserver/online'
-            ],
-            '🇹🇭 Free 7': [
-                'http://free7.sksvpn.shop:81/server/online',
-                'http://free7.sksvpn.shop:81/udpserver/online'
-            ],
-            '🇹🇭 Free 8': [
-                'http://free8.sksvpn.shop:81/server/online',
-                'http://free8.sksvpn.shop:81/udpserver/online'
-            ],
-            '🇹🇭 Free 9': [
-                'http://free9.sksvpn.shop:81/server/online',
-                'http://free9.sksvpn.shop:81/udpserver/online'
-            ],
-            '🇹🇭 Free 10': [
-                'http://free10.sksvpn.shop:81/server/online',
-                'http://free10.sksvpn.shop:81/udpserver/online'
-            ],
-            '🇹🇭 Free 11': [
-                'http://free11oct.sksvpn.shop:81/server/online',
-                'http://free11oct.sksvpn.shop:81/udpserver/online'
-            ],
-            '🇹🇭 Free 12': [
-                'http://free12oct.sksvpn.shop:81/server/online',
-                'http://free12oct.sksvpn.shop:81/udpserver/online'
-            ],
-            '🇹🇭 Free 13': [
-                'http://free13oct.sksvpn.shop:81/server/online',
-                'http://free13oct.sksvpn.shop:81/udpserver/online'
-            ],
-            '🇹🇭 Free 14': [
-                'http://free14oct.sksvpn.shop:81/server/online',
-                'http://free14oct.sksvpn.shop:81/udpserver/online'
-            ],
-            '🇹🇭 Free 15': [
-                'http://free15oct.sksvpn.shop:81/server/online',
-                'http://free15oct.sksvpn.shop:81/udpserver/online'
+        // Server configuration
+        const servers = [
+            { id: 'th-01', name: 'Thailand-01', url: 'http://free1svpn.sksvpn.shop:81/server/online' },
+            { id: 'th-02', name: 'Thailand-02', url: 'http://free2svpn.sksvpn.shop:81/server/online' },
+            { id: 'th-03', name: 'Thailand-03', url: 'http://free3svpn.sksvpn.shop:81/server/online' }
+        ];
 
-            ],
-            '🇹🇭 Free 16': [
-                'http://free16.sksvpn.shop:81/server/online',
-                'http://free16.sksvpn.shop:81/udpserver/online'
-            ],
-            '🇹🇭 Free 17': [
-                'http://free17.sksvpn.shop:81/server/online',
-                'http://free17.sksvpn.shop:81/udpserver/online'
-            ],
-            '🇹🇭 Free 18': [
-                'http://free18.sksvpn.shop:81/server/online',
-                'http://free18.sksvpn.shop:81/udpserver/online'
-            ],
-            '🇹🇭 Free 19': [
-                'http://free19.sksvpn.shop:81/server/online',
-                'http://free19.sksvpn.shop:81/udpserver/online'
-            ],
-            '🇹🇭 Free 20': [
-                'http://free20.sksvpn.shop:81/server/online',
-                'http://free20.sksvpn.shop:81/udpserver/online'
+        const SERVER_USER_LIMIT = 250;
+        const corsProxies = [
+            url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+            url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+            url => `https://corsproxy.org/?${encodeURIComponent(url)}`,
+            url => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`
+        ];
 
-            ],
-        };
+        // Utility functions
+        function getCountryCode(serverId) {
+            return serverId.split('-')[0] || 'th';
+        }
 
-        // --- Global Variables ---
-        let totalOnlineCount = 0;
-        let serversResponded = 0;
-        const serverGroupCount = Object.keys(servers).length;
+        function getFlagImage(countryCode) {
+            const code = countryCode.toLowerCase();
+            return `https://flagcdn.com/w40/${code}.png`;
+        }
 
-        const tbody = document.getElementById('server-list-body');
-        const totalDisplay = document.getElementById('total-users-display');
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
+        function getPingClass(pingTime) {
+            if (pingTime <= 100) return 'ping-good';
+            if (pingTime <= 300) return 'ping-medium';
+            return 'ping-bad';
+        }
 
-        
-        // --- Theme Toggle Logic ---
-        function setTheme(theme) {
-            if (theme === 'dark') {
-                body.classList.add('dark-mode');
-                themeToggle.checked = true;
-                localStorage.setItem('theme', 'dark');
+        function getServerStatus(onlineCount) {
+            if (onlineCount === 0) {
+                return { status: 'Offline', class: 'status-offline', icon: 'cloud_off' };
+            } else if (onlineCount >= SERVER_USER_LIMIT) {
+                return { status: 'Full', class: 'status-full', icon: 'people' };
+            } else if (onlineCount > SERVER_USER_LIMIT * 0.8) {
+                return { status: 'Busy', class: 'status-busy', icon: 'warning' };
             } else {
-                body.classList.remove('dark-mode');
-                themeToggle.checked = false;
-                localStorage.setItem('theme', 'light');
+                return { status: 'Online', class: 'status-online', icon: 'cloud_done' };
             }
         }
 
-        themeToggle.addEventListener('change', () => {
-            if (themeToggle.checked) {
-                setTheme('dark');
-            } else {
-                setTheme('light');
-            }
-        });
-
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        setTheme(savedTheme);
-        
-
-        // --- Data Fetching Logic with CORS Proxy ---
-
-        function fetchAllServerStatuses() {
-            totalOnlineCount = 0;
-            serversResponded = 0;
-            tbody.innerHTML = ''; 
-            totalDisplay.innerHTML = `<span class="loading"><span class='status-dot dot-grey'></span>Loading...</span>`;
-            totalDisplay.className = 'total-users'; 
-
-            Object.entries(servers).forEach(([serverName, urlList]) => {
-                const row = tbody.insertRow();
-                const cellName = row.insertCell(0);
-                const cellStatus = row.insertCell(1);
-                
-                cellName.textContent = serverName;
-                cellStatus.innerHTML = `<span class="loading"><span class='status-dot dot-grey'></span>Loading...</span>`;
-
-                fetchServerGroupStatus(serverName, urlList, cellStatus);
-            });
+        function getProgressBarClass(percentage) {
+            if (percentage < 50) return 'progress-low';
+            if (percentage < 80) return 'progress-medium';
+            if (percentage < 100) return 'progress-high';
+            return 'progress-full';
         }
 
-        async function fetchServerGroupStatus(serverName, urlList, statusCell) {
-            let groupOnlineCount = 0;
-            let groupConnectFailed = true;
-
-            const requests = urlList.map(url => {
-                // Cache busting parameter
-                const cacheBust = `t=${new Date().getTime()}`;
-                const separator = url.includes('?') ? '&' : '?';
-                const originalUrlWithCache = `${url}${separator}${cacheBust}`;
-
-                // === IMPORTANT: Using 'allorigins' Proxy to bypass HTTPS/CORS Block ===
-                // This allows fetching HTTP content from an HTTPS site like Netlify
-                const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(originalUrlWithCache)}`;
+        async function fetchWithCorsProxy(url, proxyIndex = 0) {
+            if (proxyIndex >= corsProxies.length) {
+                throw new Error('All CORS proxies failed');
+            }
+            
+            const proxyUrl = corsProxies[proxyIndex](url);
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 8000);
                 
-                return fetch(proxyUrl)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.text();
-                    })
-                    .then(text => {
-                        const trimmed = text.trim();
-                        // Validate if response is a number
-                        if (!isNaN(trimmed) && trimmed !== '') {
-                            return { status: 'success', online: parseInt(trimmed, 10) };
-                        } else {
-                            return { status: 'error' };
-                        }
-                    })
-                    .catch((e) => {
-                        // console.warn("Fetch failed for:", url); 
-                        return {status: 'error'};
-                    });
-            });
-
-            const results = await Promise.allSettled(requests);
-
-            results.forEach(result => {
-                if (result.status === 'fulfilled' && result.value.status === 'success') {
-                    groupOnlineCount += result.value.online;
-                    groupConnectFailed = false;
+                const response = await fetch(proxyUrl, {
+                    signal: controller.signal,
+                    headers: { 'Accept': 'text/plain' }
+                });
+                
+                clearTimeout(timeoutId);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
-            });
-
-            if (!groupConnectFailed) {
-                let statusClass, dotClass, label;
-                if (groupOnlineCount > 300) {
-                    statusClass = "online-danger";
-                    dotClass = "dot-red";
-                    label = "High Load";
-                } else if (groupOnlineCount > 200) {
-                    statusClass = "online-warning";
-                    dotClass = "dot-yellow";
-                    label = "Busy";
-                } else {
-                    statusClass = "online";
-                    dotClass = "dot-green";
-                    label = "Normal";
+                
+                return response;
+            } catch (error) {
+                if (proxyIndex < corsProxies.length - 1) {
+                    return fetchWithCorsProxy(url, proxyIndex + 1);
                 }
+                throw error;
+            }
+        }
 
-                statusCell.className = statusClass;
-                statusCell.innerHTML = `
-                    <span class='status-dot ${dotClass}'></span>
-                    Online ${groupOnlineCount} people
-                    <span class='badge rounded-pill ms-2 ${statusClass}' style='background: transparent; border: 1px solid var(--border-color-light); font-size: 0.85em;'>${label}</span>
+        async function updateServerStatus() {
+            const container = document.getElementById('serverContainer');
+            const totalOnlineCountElement = document.getElementById('totalOnlineCount');
+            const lastUpdatedElement = document.getElementById('lastUpdated');
+
+            let totalOnlineCount = 0;
+
+            // Clear container
+            container.innerHTML = '';
+
+            const serverPromises = servers.map(async (server) => {
+                const serverElement = document.createElement('div');
+                serverElement.className = 'server-item';
+                serverElement.innerHTML = `
+                    <div class="server-header">
+                        <div class="server-name">
+                            <div class="status-indicator status-offline"></div>
+                            <img src="${getFlagImage(getCountryCode(server.id))}" alt="Flag" class="flag" onerror="this.style.display='none'">
+                            <span>${server.name}</span>
+                        </div>
+                        <div class="ping-badge ping-bad">Checking...</div>
+                    </div>
+                    <div class="server-details">
+                        <div class="usage-info">
+                            <div class="usage-text">Checking server status...</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill progress-low" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
                 `;
                 
-                totalOnlineCount += groupOnlineCount;
+                container.appendChild(serverElement);
 
-            } else {
-                statusCell.className = 'offline';
-                statusCell.innerHTML = `<span class='status-dot dot-red'></span>Unable to connect`;
-            }
+                try {
+                    const startTime = Date.now();
+                    const response = await fetchWithCorsProxy(server.url);
+                    const responseText = await response.text();
+                    let onlineCount = parseInt(responseText, 10);
+                    
+                    if (onlineCount > SERVER_USER_LIMIT) {
+                        onlineCount = SERVER_USER_LIMIT;
+                    }
+                    
+                    const pingTime = Date.now() - startTime;
 
-            serversResponded++;
-            if (serversResponded === serverGroupCount) {
-                updateTotalDisplay();
-            }
-        }
-        
-        function updateTotalDisplay() {
-            let totalClass, dotClass;
+                    if (!isNaN(onlineCount)) {
+                        totalOnlineCount += onlineCount;
+
+                        const statusInfo = getServerStatus(onlineCount);
+                        const pingClass = getPingClass(pingTime);
+                        const percentage = Math.min(100, Math.round((onlineCount / SERVER_USER_LIMIT) * 100));
+                        const progressBarClass = getProgressBarClass(percentage);
+
+                        serverElement.innerHTML = `
+                            <div class="server-header">
+                                <div class="server-name">
+                                    <div class="status-indicator ${statusInfo.class}"></div>
+                                    <img src="${getFlagImage(getCountryCode(server.id))}" alt="Flag" class="flag" onerror="this.style.display='none'">
+                                    <span>${server.name}</span>
+                                </div>
+                                <div class="ping-badge ${pingClass}">${pingTime}ms</div>
+                            </div>
+                            <div class="server-details">
+                                <div class="usage-info">
+                                    <div class="usage-text">${onlineCount}/${SERVER_USER_LIMIT} users (${percentage}%)</div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill ${progressBarClass}" style="width: ${percentage}%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        throw new Error('Invalid response');
+                    }
+                } catch (error) {
+                    serverElement.innerHTML = `
+                        <div class="server-header">
+                            <div class="server-name">
+                                <div class="status-indicator status-offline"></div>
+                                <img src="${getFlagImage(getCountryCode(server.id))}" alt="Flag" class="flag" onerror="this.style.display='none'">
+                                <span>${server.name}</span>
+                            </div>
+                            <div class="ping-badge ping-bad">Error</div>
+                        </div>
+                        <div class="server-details">
+                            <div class="error-state">
+                                <span class="material-icons" style="font-size: 16px;">error</span>
+                                Connection failed
+                                <button class="retry-btn" onclick="retryServer('${server.id}')">Retry</button>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            await Promise.allSettled(serverPromises);
+
+            // Update statistics
+            totalOnlineCountElement.textContent = totalOnlineCount;
+
+            // Update timestamp (Bangkok timezone)
+            const now = new Date();
+            const options = {
+                timeZone: 'Asia/Bangkok',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            };
+            const formatter = new Intl.DateTimeFormat('en-US', options);
+            const parts = formatter.formatToParts(now);
+            const formattedDate = `${parts.find(p => p.type === 'year').value}-${parts.find(p => p.type === 'month').value}-${parts.find(p => p.type === 'day').value} ${parts.find(p => p.type === 'hour').value}:${parts.find(p => p.type === 'minute').value}:${parts.find(p => p.type === 'second').value}`;
             
-            if (totalOnlineCount > 400 * serverGroupCount) {
-                totalClass = "online-danger";
-                dotClass = "dot-red";
-            } else if (totalOnlineCount > 300 * serverGroupCount) {
-                totalClass = "online-warning";
-                dotClass = "dot-yellow";
-            } else {
-                totalClass = "online";
-                dotClass = "dot-green";
-            }
-
-            totalDisplay.className = `total-users ${totalClass}`;
-            totalDisplay.innerHTML = `<span class='status-dot ${dotClass}'></span>${totalOnlineCount} people`;
+            lastUpdatedElement.innerHTML = `
+                <span class="material-icons" style="font-size: 16px; vertical-align: middle;">update</span>
+                Last updated: ${formattedDate} (Bangkok Time)
+            `;
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchAllServerStatuses(); 
-            setInterval(fetchAllServerStatuses, 30000); 
-        });
+        async function retryServer(serverId) {
+            const server = servers.find(s => s.id === serverId);
+            if (!server) return;
 
+            const serverElements = document.querySelectorAll('.server-item');
+            const serverElement = Array.from(serverElements).find(el => 
+                el.textContent.includes(server.name)
+            );
+            
+            if (!serverElement) return;
+
+            serverElement.innerHTML = `
+                <div class="server-header">
+                    <div class="server-name">
+                        <div class="status-indicator status-offline"></div>
+                        <img src="${getFlagImage(getCountryCode(server.id))}" alt="Flag" class="flag" onerror="this.style.display='none'">
+                        <span>${server.name}</span>
+                    </div>
+                    <div class="ping-badge ping-bad">Retrying...</div>
+                </div>
+                <div class="server-details">
+                    <div class="loading-skeleton"></div>
+                </div>
+            `;
+
+            try {
+                const startTime = Date.now();
+                const response = await fetchWithCorsProxy(server.url);
+                const responseText = await response.text();
+                let onlineCount = parseInt(responseText, 10);
+                
+                if (onlineCount > SERVER_USER_LIMIT) {
+                    onlineCount = SERVER_USER_LIMIT;
+                }
+                
+                const pingTime = Date.now() - startTime;
+
+                if (!isNaN(onlineCount)) {
+                    const statusInfo = getServerStatus(onlineCount);
+                    const pingClass = getPingClass(pingTime);
+                    const percentage = Math.min(100, Math.round((onlineCount / SERVER_USER_LIMIT) * 100));
+                    const progressBarClass = getProgressBarClass(percentage);
+
+                    serverElement.innerHTML = `
+                        <div class="server-header">
+                            <div class="server-name">
+                                <div class="status-indicator ${statusInfo.class}"></div>
+                                <img src="${getFlagImage(getCountryCode(server.id))}" alt="Flag" class="flag" onerror="this.style.display='none'">
+                                <span>${server.name}</span>
+                            </div>
+                            <div class="ping-badge ${pingClass}">${pingTime}ms</div>
+                        </div>
+                        <div class="server-details">
+                            <div class="usage-info">
+                                <div class="usage-text">${onlineCount}/${SERVER_USER_LIMIT} users (${percentage}%)</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill ${progressBarClass}" style="width: ${percentage}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    throw new Error('Invalid response');
+                }
+            } catch (error) {
+                serverElement.innerHTML = `
+                    <div class="server-header">
+                        <div class="server-name">
+                            <div class="status-indicator status-offline"></div>
+                            <img src="${getFlagImage(getCountryCode(server.id))}" alt="Flag" class="flag" onerror="this.style.display='none'">
+                            <span>${server.name}</span>
+                        </div>
+                        <div class="ping-badge ping-bad">Error</div>
+                    </div>
+                    <div class="server-details">
+                        <div class="error-state">
+                            <span class="material-icons" style="font-size: 16px;">error</span>
+                            Connection failed
+                            <button class="retry-btn" onclick="retryServer('${server.id}')">Retry</button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Theme management
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 
+                (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            
+            document.body.className = savedTheme === 'dark' ? 'dark-theme' : '';
+            updateThemeButton();
+        }
+
+        function toggleTheme() {
+            const isDark = document.body.classList.toggle('dark-theme');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateThemeButton();
+        }
+
+        function updateThemeButton() {
+            const button = document.getElementById('themeToggle');
+            const isDark = document.body.classList.contains('dark-theme');
+            button.innerHTML = `<span class="material-icons">${isDark ? 'light_mode' : 'dark_mode'}</span>`;
+        }
+
+        // Event listeners
+        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+        // Initialize
+        initTheme();
+        updateServerStatus();
+
+        // Auto-refresh
+        setInterval(updateServerStatus, 30000); // Refresh every 30 seconds
     </script>
-
 </body>
 </html>
